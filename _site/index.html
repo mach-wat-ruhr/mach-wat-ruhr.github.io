@@ -12,7 +12,7 @@
 
   <body id="page-top">
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top py-3">
-  <a class="navbar-brand" href="#">mach.wat.ruhr</a>
+  <a class="navbar-brand" href="/">Nebenan Einkaufen</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -24,64 +24,97 @@
           Unternehmen
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown-1">
-          <a class="dropdown-item" href="help.html">Was gibt es für Hilfe?</a>
-          <a class="dropdown-item" href="add.html">Unternehmen eintragen lassen</a>
+          <a class="dropdown-item" href="/help/">Was gibt es für Hilfe?</a>
+          <a class="dropdown-item" href="/add-company/">Unternehmen eintragen lassen</a>
         </div>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown-2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Untersützer
+          Unterstützer
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown-2">
-          <a class="dropdown-item" href="#">Was ist die Idee?</a>
-          <a class="dropdown-item" href="#">Karte mit Unternehmen</a>
-          <a class="dropdown-item" href="#">Liste mit Unternehmen</a>
+          <a class="dropdown-item" href="/idea/">Was ist die Idee?</a>
+          <a class="dropdown-item disabled" href="">Karte mit Unternehmen</a>
         </div>
       </li>
       <li class="nav-item">
-          <a class="nav-link" href="#">Über Uns</a>
+          <a class="nav-link" href="/#about-us">Über Uns</a>
       </li>
     </ul>
     <form class="form-inline">
       <div class="input-group">
-        <input class="form-control" type="search" placeholder="Suche nach Unternehmen" aria-label="Search">
+        <input class="form-control" type="search" placeholder="Suche nach Unternehmen" aria-label="Search" id="button-navbar-search-input">
         <div class="input-group-append">
-          <button class="btn btn-outline-secondary" type="button" id="button-addon2"><i class="fas fa-search"></i></button>
+          <button class="btn btn-outline-secondary" type="button" id="button-navbar-search"><i class="fas fa-search"></i></button>
         </div>
       </div>
     </form>
+    <ul class="navbar-nav ml-2">
+      <li class="nav-item">
+        <a class="nav-link" href="https://github.com/mach-wat-ruhr/mach-wat-ruhr.github.io"><i class="fab fa-github"></i></a>
+      </li>
+    </ul>
   </div>
 </nav>
 
-    <div class="jumbotron jumbotron-fluid" id="welcome">
+    <div class="jumbotron jumbotron-fluid top">
   <div class="container text-center text-white">
     <h1 class="display-6">Wofür wurde diese Seite gebaut?</h1>
-    <p class="lead">Mit dieser Seite möchten wir lokalen Unternehmen im Bochum eine kleine
+    <p class="lead">
+      Mit dieser Seite möchten wir lokalen Unternehmen eine kleine
       Plattform bieten über welche Sie zentral mitteilen können wie der Betrieb
-      während der COVID-19 Krise weiter geht.</p>
-    <div class="row text-center">
+      während der COVID-19 Krise weiter geht.
+    </p>
+    <p class="lead d-none d-md-block">
+      Wie kann weiter eingekauft werden?
+      Kann man Gutscheine kaufen oder spenden um den kleinen lokalen Betrieb zu erhalten?
+    </p>
+    <p class="lead">
+      Suchen Sie nach dem Cafe, dem Restaurant, der Selbständigen oder der
+      Bäckerei die Sie unrterstützen möchten.
+    </p>
+    <!-- <div class="row text-center">
       <div class="col text-center">
         <button class="btn btn-success ms-2 mb-1" type="button" name="button">UNTERNEHMEN</button>
         <button class="btn btn-success ms-2 mb-1" type="button" name="button">UNTERSTÜTZER*INNEN</button>
       </div>
-    </div>
+    </div> -->
     <div class="row text-center mt-4">
       <div class="col text-center">
         <div class="input-group">
-          <input class="form-control" type="search" placeholder="Suche nach Unternehmen" aria-label="Search">
+          <input class="form-control" type="search" placeholder="Suche nach lokalen Unternehmen" aria-label="Search" id="button-addon-search-input">
           <div class="input-group-append">
-            <button class="btn btn-outline-success" type="button" id="button-addon2"><i class="fas fa-search"></i></button>
+            <button class="btn btn-outline-danger" type="button" id="button-addon-search"><i class="fas fa-search"></i></button>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+<div class="container">
+  <h1 id="about-us">Über Uns</h1>
+  <p>Das Projekt entstand währende des Hackathons <a href="https://wirvsvirushackathon.org/">#WirVsVirus</a>. Wir sind drei junge Bochumerinnen und Bochumer die ihre Stadt unterstützen wollen.</p>
+  <p>
+    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo
+    duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+    tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
+    Lorem ipsum dolor sit amet.
+  </p>
+</div>
 
-    <!-- JS -->
+    <hr>
+<div class="container">
+  <footer class="text-muted">
+    <p class="float-right"><a href="#page-top">Nach oben</a></p>
+    <p>CodeForGermany</p>
+  </footer>
+</div>
+
+<!-- JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<script src="/js/main.js"></script>
 
   </body>
 </html>
