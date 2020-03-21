@@ -2,12 +2,27 @@
 layout: default
 ---
 
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <h1 class="text-primary">Hello there!</h1>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium corporis ipsam cumque rerum quas quia neque, dolor vitae laboriosam.</p>
-      <i class="fas fa-thumbs-up fa-2x"></i>
+<div class="jumbotron jumbotron-fluid" id="welcome">
+  <div class="container text-center text-white">
+    <h1 class="display-6">Wofür wurde diese Seite gebaut?</h1>
+    <p class="lead">Mit dieser Seite möchten wir lokalen Unternehmen im Bochum eine kleine
+      Plattform bieten über welche Sie zentral mitteilen können wie der Betrieb
+      während der COVID-19 Krise weiter geht.</p>
+    <div class="row text-center">
+      <div class="col text-center">
+        <button class="btn btn-success ms-2 mb-1" type="button" name="button">UNTERNEHMEN</button>
+        <button class="btn btn-success ms-2 mb-1" type="button" name="button">UNTERSTÜTZER*INNEN</button>
+      </div>
+    </div>
+    <div class="row text-center mt-4">
+      <div class="col text-center">
+        <div class="input-group">
+          <input class="form-control" type="search" placeholder="Suche nach Unternehmen" aria-label="Search">
+          <div class="input-group-append">
+            <button class="btn btn-outline-success" type="button" id="button-addon2"><i class="fas fa-search"></i></button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

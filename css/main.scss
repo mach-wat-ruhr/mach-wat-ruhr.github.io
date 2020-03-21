@@ -2,3 +2,22 @@
 ---
 
 @import 'bootstrap/bootstrap';
+
+.navbar {
+  margin-bottom: 20px;
+}
+
+.jumbotron {
+  height: 100vh;
+  // width: 100vw;
+  background: url("../img/support.jpg") no-repeat center center;
+  position: relative;
+}
+
+.btn .btn-success {
+  margin: 5px;
+}
+
+#welcome {
+  padding-top: 20vh;
+}
