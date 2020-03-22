@@ -121,7 +121,7 @@ function showResult(result){
                   <b><i class="fas fa-map-marked-alt"></i></b>
                 </div>
                 <div class="col-10">
-                  `+htmlEntities(data[i].location)+`
+                  `+htmlEntities(data[i].address+", "+data[i].postalcode+" "+data[i].locality+", "+data[i].country)+`
                 </div>
               </div>
               <div class="row">
@@ -255,8 +255,8 @@ function getGeoJSON(){
 }
 
 function getStoresBySearch(input){
-  let path = "/api/stores/search?q="+input;
-  // let path = "/"
+  // let path = "/api/stores/search?q="+input;
+  let path = "/"
   $.ajax({url:API_ENDPOINT+path,error:function(xhr){
     // alert("An error occured: " + xhr.status + " " + xhr.statusText);
     console.log(xhr)
