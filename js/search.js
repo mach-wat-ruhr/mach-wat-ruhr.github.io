@@ -243,7 +243,7 @@ function showError(){
 // API Access
 
 // API_ENDPOINT = "http://127.0.0.1:4000"
-API_ENDPOINT = ""
+API_ENDPOINT = "https://nebenaneinkaufen.next-site.de"
 
 function getStoreById(id){
   let path = "/api/store/"+id;
@@ -256,71 +256,70 @@ function getGeoJSON(){
 }
 
 function getStoresBySearch(input){
-  // let path = "/api/stores/search?q="+input;
-  let path = "/"
+  let path = "/api/stores/search?q="+input;
   $.ajax({url:API_ENDPOINT+path,error:function(xhr){
     // alert("An error occured: " + xhr.status + " " + xhr.statusText);
     console.log(xhr)
     showError();
   }, success:function(xhr){
     console.log(xhr)
-    // json = JSON.parse(xhr.responseText)
-    // console.log(json)
-
-    json = JSON.parse(`{
-        "status": 0,
-        "data": [
-            {
-                "id": 1,
-                "modified": "2020-03-22T09:47:52Z",
-                "created": "2020-03-22T09:47:52Z",
-                "version": "0.9.0",
-                "name": "binary butterfly GmbH",
-                "firstname": "Name",
-                "lastname": "Name",
-                "company": "binary butterfly GmbH",
-                "address": "Am Hertinger Tor 1",
-                "postalcode": "59423",
-                "locality": "Unna",
-                "country": "DE",
-                "lat": 51.529774,
-                "lon": 7.685229,
-                "website": "https://website",
-                "email": "email@email",
-                "phone": "+49123456789",
-                "mobile": "+49123456789",
-                "fax": "+49123456789",
-                "type": "Restaurant",
-                "description": "This is a small text"
-            },
-            {
-              "id": 2,
-              "modified": "2020-03-22T09:47:52Z",
-              "created": "2020-03-22T09:47:52Z",
-              "version": "0.9.0",
-              "name": "binary butterfly GmbH 2",
-              "firstname": "Name",
-              "lastname": "Name",
-              "company": "binary butterfly GmbH",
-              "address": "Am Hertinger Tor 2",
-              "postalcode": "59423",
-              "locality": "Unna",
-              "country": "DE",
-              "lat": 51.529774,
-              "lon": 7.685229,
-              "website": "https://website",
-              "email": "email@email",
-              "phone": "+49123456789",
-              "mobile": "+49123456789",
-              "fax": "+49123456789",
-              "type": "Restaurant",
-              "description": "This is a small text"
-          }
-            
-        ],
-        "count": 2
-    }`);
+    json = JSON.parse(xhr.responseText)
     console.log(json)
+
+    // json = JSON.parse(`{
+    //     "status": 0,
+    //     "data": [
+    //         {
+    //             "id": 1,
+    //             "modified": "2020-03-22T09:47:52Z",
+    //             "created": "2020-03-22T09:47:52Z",
+    //             "version": "0.9.0",
+    //             "name": "binary butterfly GmbH",
+    //             "firstname": "Name",
+    //             "lastname": "Name",
+    //             "company": "binary butterfly GmbH",
+    //             "address": "Am Hertinger Tor 1",
+    //             "postalcode": "59423",
+    //             "locality": "Unna",
+    //             "country": "DE",
+    //             "lat": 51.529774,
+    //             "lon": 7.685229,
+    //             "website": "https://website",
+    //             "email": "email@email",
+    //             "phone": "+49123456789",
+    //             "mobile": "+49123456789",
+    //             "fax": "+49123456789",
+    //             "type": "Restaurant",
+    //             "description": "This is a small text"
+    //         },
+    //         {
+    //           "id": 2,
+    //           "modified": "2020-03-22T09:47:52Z",
+    //           "created": "2020-03-22T09:47:52Z",
+    //           "version": "0.9.0",
+    //           "name": "binary butterfly GmbH 2",
+    //           "firstname": "Name",
+    //           "lastname": "Name",
+    //           "company": "binary butterfly GmbH",
+    //           "address": "Am Hertinger Tor 2",
+    //           "postalcode": "59423",
+    //           "locality": "Unna",
+    //           "country": "DE",
+    //           "lat": 51.529774,
+    //           "lon": 7.685229,
+    //           "website": "https://website",
+    //           "email": "email@email",
+    //           "phone": "+49123456789",
+    //           "mobile": "+49123456789",
+    //           "fax": "+49123456789",
+    //           "type": "Restaurant",
+    //           "description": "This is a small text"
+    //       }
+            
+    //     ],
+    //     "count": 2
+    // }`);
+    // console.log(json)
     showResult(json)
   }});
 }
