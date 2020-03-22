@@ -6,6 +6,10 @@ layout: default
   <p>Mit diesem Formular könnt ihr euer Unternehmen in die Datenbank eintragen lassen.</p>
   <form>
     <div class="form-group">
+      <label for="Name">Namen des Unternehmens:</label>
+      <input type="text" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Name">
+    </div>
+    <div class="form-group">
       <label for="email">E-Mail</label>
       <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="mail@domain.de">
       <small id="emailHelp" class="form-text text-muted">Diese wird auch genutzt damit ihr am Ende von den Unterstützern kontaktiert werden könnt.</small>
@@ -51,6 +55,49 @@ layout: default
           <input type="text" class="form-control" id="contact_tel" placeholder="Ort">
         </div>
       </div>
+    </div>
+    <div class="form-group">
+      <label for="contact">Öffnungszeiten:</label>
+      <div class="row">
+        <div class="col-3">
+          <p><b>Wochentag</b></p>
+          <p>Montag</p>
+          <p>Dienstag</p>
+          <p>Mittwoch</p>
+          <p>Donnerstag</p>
+          <p>Freitag</p>
+          <p>Samstag</p>
+          <p>Sonntag</p>
+        </div>
+        <div class="col-4">
+          <p><b>Start</b></p>
+          <input type="text" class="form-control" placeholder="00:00">
+          <input type="text" class="form-control" placeholder="00:00">
+          <input type="text" class="form-control" placeholder="00:00">
+          <input type="text" class="form-control" placeholder="00:00">
+          <input type="text" class="form-control" placeholder="00:00">
+          <input type="text" class="form-control" placeholder="00:00">
+          <input type="text" class="form-control" placeholder="00:00">
+        </div>
+        <div class="col-4">
+          <p><b>Ende</b></p>
+          <input type="text" class="form-control" placeholder="23:59">
+          <input type="text" class="form-control" placeholder="23:59">
+          <input type="text" class="form-control" placeholder="23:59">
+          <input type="text" class="form-control" placeholder="23:59">
+          <input type="text" class="form-control" placeholder="23:59">
+          <input type="text" class="form-control" placeholder="23:59">
+          <input type="text" class="form-control" placeholder="23:59">
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="description">Gutschein:</label>
+      <textarea class="form-control" id="description" rows="1" placeholder=""></textarea>
+    </div>
+    <div class="form-group">
+      <label for="description">Crowd Founding:</label>
+      <textarea class="form-control" id="description" rows="1" placeholder=""></textarea>
     </div>
     <div class="row">
       <div class="col-6">
