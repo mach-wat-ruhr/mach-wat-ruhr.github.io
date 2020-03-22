@@ -242,7 +242,8 @@ function showError(){
 
 // API Access
 
-API_ENDPOINT = "http://127.0.0.1:4000"
+// API_ENDPOINT = "http://127.0.0.1:4000"
+API_ENDPOINT = ""
 
 function getStoreById(id){
   let path = "/api/store/"+id;

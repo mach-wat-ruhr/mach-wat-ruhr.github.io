@@ -8,6 +8,10 @@ function sendToMainSearch(input){
   window.location.assign("/search/#input="+input);
 }
 
+function previewModal(){
+  
+}
+
 window.onload = function(){
   //register click handler
   $("#button-addon-search").click(function(obj){
