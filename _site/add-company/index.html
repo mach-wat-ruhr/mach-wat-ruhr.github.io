@@ -25,7 +25,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown-1">
           <a class="dropdown-item" href="/help/">Was gibt es für Hilfe?</a>
-          <a class="dropdown-item" href="/add-company/">Unternehmen eintragen lassen</a>
+          <a class="dropdown-item" href="/add-company/">Unternehmen eintragen</a>
         </div>
       </li>
       <li class="nav-item dropdown">
@@ -58,7 +58,67 @@
 </nav>
 
     <div class="container top">
-  <h1>ToDo</h1>
+  <h1>Unternehmen eintragen</h1>
+  <p>Mit diesem Formular könnt ihr euer Unternehmen in die Datenbank eintragen lassen.</p>
+  <form>
+    <div class="form-group">
+      <label for="email">E-Mail</label>
+      <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="mail@domain.de">
+      <small id="emailHelp" class="form-text text-muted">Diese wird auch genutzt damit ihr am Ende von den Unterstützern kontaktiert werden könnt.</small>
+    </div>
+    <div class="form-group">
+      <label for="password">Passwort:</label>
+      <input type="password" class="form-control" id="password" aria-describedby="passwordHelp" placeholder="Passwort">
+      <small id="passwordHelp" class="form-text text-muted">Das Passwort braucht ihr um Änderungen zu machen.</small>
+    </div>
+    <div class="form-group">
+      <label for="description">Ein kleiner persönlicher Text und Hilferuf:</label>
+      <textarea class="form-control" id="description" rows="4" placeholder="Hallo wir sind XYZ und brauchen eure Unterstützung..."></textarea>
+    </div>
+    <div class="form-group">
+      <label for="categorySelect">Wähle die Passende Kategorie aus:</label>
+      <select class="form-control" id="categorySelect">
+        <option>Einzelhandel</option>
+        <option>Restaurant</option>
+        <option>Selbständig</option>
+        <option>ToDo</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="contact">Kontaktdaten:</label>
+      <input type="text" class="form-control" id="contact_name" placeholder="Vorname Nachname">
+      <input type="text" class="form-control mt-2" id="contact_tel" placeholder="+49123456789">
+    </div>
+    <div class="form-group">
+      <label for="contact">Adresse:</label>
+      <div class="row">
+        <div class="col-9">
+          <input type="text" class="form-control" id="contact_name" placeholder="Straße">
+        </div>
+        <div class="col-3">
+          <input type="text" class="form-control" id="contact_tel" placeholder="Hausnummer">
+        </div>
+      </div>
+      <div class="row mt-2">
+        <div class="col-5">
+          <input type="text" class="form-control" id="contact_tel" placeholder="PLZ">
+        </div>
+        <div class="col-7">
+          <input type="text" class="form-control" id="contact_tel" placeholder="Ort">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <button class="btn btn-outline-success">Vorschau</button>
+      </div>
+      <div class="col-6">
+        <div class="text-right">
+          <button class="btn btn-outline-danger">Abschicken</button>
+        </div>
+      </div>
+    </div>
+  </form>
 </div>
 
     <hr>
@@ -73,7 +133,7 @@
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-<script src="/js/main.js"></script>
+<script src="/js/search.js"></script>
 
   </body>
 </html>

@@ -1,6 +1,66 @@
 ---
-layout: default
+layout: search
 ---
 <div class="container top">
-  <h1>ToDo</h1>
+  <h1>Unternehmen eintragen</h1>
+  <p>Mit diesem Formular könnt ihr euer Unternehmen in die Datenbank eintragen lassen.</p>
+  <form>
+    <div class="form-group">
+      <label for="email">E-Mail</label>
+      <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="mail@domain.de">
+      <small id="emailHelp" class="form-text text-muted">Diese wird auch genutzt damit ihr am Ende von den Unterstützern kontaktiert werden könnt.</small>
+    </div>
+    <div class="form-group">
+      <label for="password">Passwort:</label>
+      <input type="password" class="form-control" id="password" aria-describedby="passwordHelp" placeholder="Passwort">
+      <small id="passwordHelp" class="form-text text-muted">Das Passwort braucht ihr um Änderungen zu machen.</small>
+    </div>
+    <div class="form-group">
+      <label for="description">Ein kleiner persönlicher Text und Hilferuf:</label>
+      <textarea class="form-control" id="description" rows="4" placeholder="Hallo wir sind XYZ und brauchen eure Unterstützung..."></textarea>
+    </div>
+    <div class="form-group">
+      <label for="categorySelect">Wähle die Passende Kategorie aus:</label>
+      <select class="form-control" id="categorySelect">
+        <option>Einzelhandel</option>
+        <option>Restaurant</option>
+        <option>Selbständig</option>
+        <option>ToDo</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="contact">Kontaktdaten:</label>
+      <input type="text" class="form-control" id="contact_name" placeholder="Vorname Nachname">
+      <input type="text" class="form-control mt-2" id="contact_tel" placeholder="+49123456789">
+    </div>
+    <div class="form-group">
+      <label for="contact">Adresse:</label>
+      <div class="row">
+        <div class="col-9">
+          <input type="text" class="form-control" id="contact_name" placeholder="Straße">
+        </div>
+        <div class="col-3">
+          <input type="text" class="form-control" id="contact_tel" placeholder="Hausnummer">
+        </div>
+      </div>
+      <div class="row mt-2">
+        <div class="col-5">
+          <input type="text" class="form-control" id="contact_tel" placeholder="PLZ">
+        </div>
+        <div class="col-7">
+          <input type="text" class="form-control" id="contact_tel" placeholder="Ort">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <button class="btn btn-outline-success">Vorschau</button>
+      </div>
+      <div class="col-6">
+        <div class="text-right">
+          <button class="btn btn-outline-danger">Abschicken</button>
+        </div>
+      </div>
+    </div>
+  </form>
 </div>
