@@ -102,10 +102,11 @@ function showResult(result){
   console.log(result);
   data = result.data;
   let headline = $("#search-headline");
-  headline.text("Einträge gefunden: "+result["count"]);
+  headline.text("Einträge gefunden: "+result.data.length);
   let search_results = $("#search-result");
   var result_template = "";
-  for (let i=0; i<result["count"]; i++) {
+  console.log("Data:",data)
+  for (let i=0; i<result.data.length; i++) {
     let template = `<div class="row mt-1 mb-1">
       <div class="col">
         <div class="card ">
@@ -262,9 +263,8 @@ function getStoresBySearch(input){
     console.log(xhr)
     showError();
   }, success:function(xhr){
-    console.log(xhr)
-    json = JSON.parse(xhr.responseText)
-    console.log(json)
+    console.log("XHR:",xhr)
+    json = xhr
 
     // json = JSON.parse(`{
     //     "status": 0,
