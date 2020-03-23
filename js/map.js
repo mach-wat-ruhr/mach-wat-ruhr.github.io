@@ -8,14 +8,14 @@ function addMarker(lon,lat,id){
 }
 
 function addGeoJSON(lon,lat,radius){
-    let path = "/api/stores/geo"//+"?lon="+lon+"&lat="+lat+"&"+"radius="+radius;
+    let path = "/api/stores/geo"+"?lon="+lon+"&lat="+lat+"&"+"radius="+radius;
     $.ajax({url:API_ENDPOINT+path,error:function(xhr){alert("An error occured: " + xhr.status + " " + xhr.statusText)}, success:function(xhr){
         console.log(xhr)
 
         var geojsonMarkerOptions = {
-            radius: 8,
-            fillColor: "#ff7800",
-            color: "#000",
+            radius: 2,
+            fillColor: "#808080",
+            color: "#808080",
             weight: 1,
             opacity: 1,
             fillOpacity: 0.8
