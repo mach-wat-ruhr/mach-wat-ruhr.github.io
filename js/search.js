@@ -111,7 +111,7 @@ function showResult(result){
       <div class="col">
         <div class="card ">
           <div class="card-body">
-            <h5 class="card-title">`+htmlEntities(data[i].name)+`</h5>
+            <h5 class="card-title">`+htmlEntities(data[i].name)+`, `+htmlEntities(data[i].locality)+`</h5>
             <p class="card-text">
               `+htmlEntities(data[i].description)+`
             </p>
@@ -122,7 +122,7 @@ function showResult(result){
                   <b><i class="fas fa-map-marked-alt"></i></b>
                 </div>
                 <div class="col-10">
-                  `+htmlEntities(data[i].address+", "+data[i].postalcode+" "+data[i].locality+", "+data[i].country)+`
+                  <a href="/map/#location=`+data[i].location+`&radius=5">`+htmlEntities(data[i].address+", "+data[i].postalcode+" "+data[i].locality+", "+data[i].country)+`</a>
                 </div>
               </div>
               <div class="row">
@@ -259,67 +259,11 @@ function getGeoJSON(){
 function getStoresBySearch(input){
   let path = "/api/stores/search?q="+input;
   $.ajax({url:API_ENDPOINT+path,error:function(xhr){
-    // alert("An error occured: " + xhr.status + " " + xhr.statusText);
     console.log(xhr)
     showError();
   }, success:function(xhr){
     console.log("XHR:",xhr)
     json = xhr
-
-    // json = JSON.parse(`{
-    //     "status": 0,
-    //     "data": [
-    //         {
-    //             "id": 1,
-    //             "modified": "2020-03-22T09:47:52Z",
-    //             "created": "2020-03-22T09:47:52Z",
-    //             "version": "0.9.0",
-    //             "name": "binary butterfly GmbH",
-    //             "firstname": "Name",
-    //             "lastname": "Name",
-    //             "company": "binary butterfly GmbH",
-    //             "address": "Am Hertinger Tor 1",
-    //             "postalcode": "59423",
-    //             "locality": "Unna",
-    //             "country": "DE",
-    //             "lat": 51.529774,
-    //             "lon": 7.685229,
-    //             "website": "https://website",
-    //             "email": "email@email",
-    //             "phone": "+49123456789",
-    //             "mobile": "+49123456789",
-    //             "fax": "+49123456789",
-    //             "type": "Restaurant",
-    //             "description": "This is a small text"
-    //         },
-    //         {
-    //           "id": 2,
-    //           "modified": "2020-03-22T09:47:52Z",
-    //           "created": "2020-03-22T09:47:52Z",
-    //           "version": "0.9.0",
-    //           "name": "binary butterfly GmbH 2",
-    //           "firstname": "Name",
-    //           "lastname": "Name",
-    //           "company": "binary butterfly GmbH",
-    //           "address": "Am Hertinger Tor 2",
-    //           "postalcode": "59423",
-    //           "locality": "Unna",
-    //           "country": "DE",
-    //           "lat": 51.529774,
-    //           "lon": 7.685229,
-    //           "website": "https://website",
-    //           "email": "email@email",
-    //           "phone": "+49123456789",
-    //           "mobile": "+49123456789",
-    //           "fax": "+49123456789",
-    //           "type": "Restaurant",
-    //           "description": "This is a small text"
-    //       }
-            
-    //     ],
-    //     "count": 2
-    // }`);
-    // console.log(json)
     showResult(json)
   }});
 }

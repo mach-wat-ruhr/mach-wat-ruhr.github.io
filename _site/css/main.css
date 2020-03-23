@@ -2857,4 +2857,8 @@ a.text-dark:hover, a.text-dark:focus { color: #1d2124 !important; }
 
 .top { padding-top: 20vh; }
 
+#mapid { height: 92vh; width: 100vw; }
+
+.map { margin-top: 8vh; z-index: 0; }
+
 /*# sourceMappingURL=main.css.map */
