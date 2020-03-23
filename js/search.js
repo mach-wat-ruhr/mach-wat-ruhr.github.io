@@ -85,127 +85,128 @@ function showResult(result){
   var result_template = "";
   console.log("Data:",data)
   for (let i=0; i<result.data.length; i++) {
-    let template = `<div class="row mt-1 mb-1">
-      <div class="col">
-        <div class="card ">
-          <div class="card-body">
-            <h5 class="card-title">`+htmlEntities(data[i].name)+`, `+htmlEntities(data[i].locality)+`</h5>
-            <p class="card-text">
-              `+htmlEntities(data[i].description)+`
-            </p>
-            <p>Tags: `+htmlEntities(data[i].help_tags)+`</p>
-            <div class="collapse mt-2 mb-2" id="collapse-`+i+`">
-              <div class="row">
-                <div class="col-2">
-                  <b><i class="fas fa-map-marked-alt"></i></b>
-                </div>
-                <div class="col-10">
-                  <a href="/map/#location=`+data[i].location+`&radius=15&id=`+data[i].id+`">`+htmlEntities(data[i].address+", "+data[i].postalcode+" "+data[i].locality+", "+data[i].country)+`</a>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-2">
-                  <b><i class="fas fa-envelope"></i></b>
-                </div>
-                <div class="col-10">
-                  <a href="mailto:`+htmlEntities(data[i].email)+`">`+htmlEntities(data[i].email)+`</a>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-2">
-                  <b><i class="fas fa-phone"></i></b>
-                </div>
-                <div class="col-10">
-                  <a href="tel:`+htmlEntities(data[i].phone)+`">`+htmlEntities(data[i].phone)+`</a>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-2">
-                  <b><i class="fas fa-clock"></i></b>
-                </div>
-                <div class="col-10">
-                  <div class="row">
-                      <div class="col-4">
-                        Mo.
-                      </div>
-                      <div class="col-8">
-                        `+htmlEntities("data[i].opening_hours.mon")+`
-                      </div>
-                  </div>
-                  <div class="row">
-                      <div class="col-4">
-                        Di.
-                      </div>
-                      <div class="col-8">
-                        `+htmlEntities("data[i].opening_hours.tue")+`
-                      </div>
-                  </div>
-                  <div class="row">
-                      <div class="col-4">
-                        Mi.
-                      </div>
-                      <div class="col-8">
-                        `+htmlEntities("data[i].opening_hours.wed")+`
-                      </div>
-                  </div>
-                  <div class="row">
-                      <div class="col-4">
-                        Do.
-                      </div>
-                      <div class="col-8">
-                        `+htmlEntities("data[i].opening_hours.thu")+`
-                      </div>
-                  </div>
-                  <div class="row">
-                      <div class="col-4">
-                        Fr.
-                      </div>
-                      <div class="col-8">
-                        `+htmlEntities("data[i].opening_hours.fri")+`
-                      </div>
-                  </div>
-                  <div class="row">
-                      <div class="col-4">
-                        Sa.
-                      </div>
-                      <div class="col-8">
-                        `+htmlEntities("data[i].opening_hours.sat")+`
-                      </div>
-                  </div>
-                  <div class="row">
-                      <div class="col-4">
-                        So.
-                      </div>
-                      <div class="col-8">
-                        `+htmlEntities("data[i].opening_hours.sun")+`
-                      </div>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-2">
-                  <b><i class="fas fa-gift"></i></b>
-                </div>
-                <div class="col-10">
-                  <a href="`+htmlEntities("data[i].how_to_buy_giftcards.url")+`">`+htmlEntities("data[i].how_to_buy_giftcards.url")+`</a>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-2">
-                  <b><i class="fas fa-hand-holding-heart"></i></b>
-                </div>
-                <div class="col-10">
-                  <a href="`+htmlEntities("data[i].how_to_crowdfund.url")+`">`+htmlEntities("data[i].how_to_crowdfund.url")+`</a>
-                </div>
-              </div>
-            </div>
-            <button class="btn" type="button" data-toggle="collapse" data-target="#collapse-`+i+`" aria-expanded="false" aria-controls="collapseExample">
-              Mehr
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>`;
+    let template = getCompanyCard(data[i]);
+    // let template = `<div class="row mt-1 mb-1">
+    //   <div class="col">
+    //     <div class="card ">
+    //       <div class="card-body">
+    //         <h5 class="card-title">`+htmlEntities(data[i].name)+`, `+htmlEntities(data[i].locality)+`</h5>
+    //         <p class="card-text">
+    //           `+htmlEntities(data[i].description)+`
+    //         </p>
+    //         <p>Tags: `+htmlEntities(data[i].help_tags)+`</p>
+    //         <div class="collapse mt-2 mb-2" id="collapse-`+i+`">
+    //           <div class="row">
+    //             <div class="col-2">
+    //               <b><i class="fas fa-map-marked-alt"></i></b>
+    //             </div>
+    //             <div class="col-10">
+    //               <a href="/map/#location=`+data[i].location+`&radius=15&id=`+data[i].id+`">`+htmlEntities(data[i].address+", "+data[i].postalcode+" "+data[i].locality+", "+data[i].country)+`</a>
+    //             </div>
+    //           </div>
+    //           <div class="row">
+    //             <div class="col-2">
+    //               <b><i class="fas fa-envelope"></i></b>
+    //             </div>
+    //             <div class="col-10">
+    //               <a href="mailto:`+htmlEntities(data[i].email)+`">`+htmlEntities(data[i].email)+`</a>
+    //             </div>
+    //           </div>
+    //           <div class="row">
+    //             <div class="col-2">
+    //               <b><i class="fas fa-phone"></i></b>
+    //             </div>
+    //             <div class="col-10">
+    //               <a href="tel:`+htmlEntities(data[i].phone)+`">`+htmlEntities(data[i].phone)+`</a>
+    //             </div>
+    //           </div>
+    //           <div class="row">
+    //             <div class="col-2">
+    //               <b><i class="fas fa-clock"></i></b>
+    //             </div>
+    //             <div class="col-10">
+    //               <div class="row">
+    //                   <div class="col-4">
+    //                     Mo.
+    //                   </div>
+    //                   <div class="col-8">
+    //                     `+htmlEntities("data[i].opening_hours.mon")+`
+    //                   </div>
+    //               </div>
+    //               <div class="row">
+    //                   <div class="col-4">
+    //                     Di.
+    //                   </div>
+    //                   <div class="col-8">
+    //                     `+htmlEntities("data[i].opening_hours.tue")+`
+    //                   </div>
+    //               </div>
+    //               <div class="row">
+    //                   <div class="col-4">
+    //                     Mi.
+    //                   </div>
+    //                   <div class="col-8">
+    //                     `+htmlEntities("data[i].opening_hours.wed")+`
+    //                   </div>
+    //               </div>
+    //               <div class="row">
+    //                   <div class="col-4">
+    //                     Do.
+    //                   </div>
+    //                   <div class="col-8">
+    //                     `+htmlEntities("data[i].opening_hours.thu")+`
+    //                   </div>
+    //               </div>
+    //               <div class="row">
+    //                   <div class="col-4">
+    //                     Fr.
+    //                   </div>
+    //                   <div class="col-8">
+    //                     `+htmlEntities("data[i].opening_hours.fri")+`
+    //                   </div>
+    //               </div>
+    //               <div class="row">
+    //                   <div class="col-4">
+    //                     Sa.
+    //                   </div>
+    //                   <div class="col-8">
+    //                     `+htmlEntities("data[i].opening_hours.sat")+`
+    //                   </div>
+    //               </div>
+    //               <div class="row">
+    //                   <div class="col-4">
+    //                     So.
+    //                   </div>
+    //                   <div class="col-8">
+    //                     `+htmlEntities("data[i].opening_hours.sun")+`
+    //                   </div>
+    //               </div>
+    //             </div>
+    //           </div>
+    //           <div class="row">
+    //             <div class="col-2">
+    //               <b><i class="fas fa-gift"></i></b>
+    //             </div>
+    //             <div class="col-10">
+    //               <a href="`+htmlEntities("data[i].how_to_buy_giftcards.url")+`">`+htmlEntities("data[i].how_to_buy_giftcards.url")+`</a>
+    //             </div>
+    //           </div>
+    //           <div class="row">
+    //             <div class="col-2">
+    //               <b><i class="fas fa-hand-holding-heart"></i></b>
+    //             </div>
+    //             <div class="col-10">
+    //               <a href="`+htmlEntities("data[i].how_to_crowdfund.url")+`">`+htmlEntities("data[i].how_to_crowdfund.url")+`</a>
+    //             </div>
+    //           </div>
+    //         </div>
+    //         <button class="btn" type="button" data-toggle="collapse" data-target="#collapse-`+i+`" aria-expanded="false" aria-controls="collapseExample">
+    //           Mehr
+    //         </button>
+    //       </div>
+    //     </div>
+    //   </div>
+    // </div>`;
     result_template += "\n"+template;
   }
 
