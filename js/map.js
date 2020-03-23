@@ -47,7 +47,7 @@ function setupMap(){
         lon = undefined;
         lat = undefined;
         id = undefined;
-        area = undefined;
+        area = true;
     }
 
     if(!radius){
