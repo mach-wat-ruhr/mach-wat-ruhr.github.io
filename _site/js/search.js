@@ -5,14 +5,17 @@ function sendToMainSearch(input){
 
 function setupSearch(){
   let hash = $(location).attr('hash')
+  if(hash == ""){
+    return;
+  }
   let input = hash.substring(hash.indexOf("input=")+6);
   $("#search").val(htmlEntities(input));
   result = search(input)
-  // showResult(result)
+  showResult(result)
 }
 
 window.onload = function(){
-  // setupSearch();
+  setupSearch();
 
   $("#button-navbar-search").click(function(obj){
     value = $("#button-navbar-search-input").val()
@@ -23,8 +26,9 @@ window.onload = function(){
 
   $("#search").on("keypress", function(e){
     if(e.which == 13){
-        var inputVal = $(this).val();
-        result = search(inputVal)
+        var input = $(this).val();
+        window.location.hash = "#input="+input;
+        result = search(input)
     }
 });
 };
@@ -65,40 +69,14 @@ function search(input){
   //       "Mitarbeiter gesucht",
   //       "abholen möglich"
   //     ]
-  //   },
-  //   {
-  //     name : "Unternehmen B",
-  //     location : "Starße 2, 44787 Bochum",
-  //     contact : {
-  //       email : "example@example",
-  //       phone : "+49123456789"
-  //     },
-  //     opening_hours : {
-  //       mon : "10:00 - 12:00",
-  //       tue : "10:00 - 12:00",
-  //       wed : "10:00 - 12:00",
-  //       thu : "10:00 - 12:00",
-  //       fri : "10:00 - 12:00",
-  //       sat : "10:00 - 12:00",
-  //       sun : "10:00 - 12:00",
-  //     },
-  //     description : "Ein kleiner Text über unser unternehmen und welche hilfe wir brauchen",
-  //     category : "SHOP",
-  //     how_to_buy_giftcards : {
-  //       url : "https://giftcards.example"
-  //     },
-  //     how_to_crowdfund : {
-  //       url : "https://crowdfound.example"
-  //     },
-  //     help_tags : [
-  //       "Mitarbeiter gesucht",
-  //       "Online Handel"
-  //     ]
   //   }
   // ]
 }
 
 function showResult(result){
+  if(result === undefined){
+    return showError()
+  }
   console.log(result);
   data = result.data;
   let headline = $("#search-headline");
@@ -122,7 +100,7 @@ function showResult(result){
                   <b><i class="fas fa-map-marked-alt"></i></b>
                 </div>
                 <div class="col-10">
-                  <a href="/map/#location=`+data[i].location+`&radius=5">`+htmlEntities(data[i].address+", "+data[i].postalcode+" "+data[i].locality+", "+data[i].country)+`</a>
+                  <a href="/map/#location=`+data[i].location+`&radius=15&id=`+data[i].id+`">`+htmlEntities(data[i].address+", "+data[i].postalcode+" "+data[i].locality+", "+data[i].country)+`</a>
                 </div>
               </div>
               <div class="row">
