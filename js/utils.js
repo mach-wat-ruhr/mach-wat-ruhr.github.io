@@ -1,5 +1,8 @@
 // GLOBAL CONSTANTS
-API_ENDPOINT = "https://nebenaneinkaufen.next-site.de";
+const API_ENDPOINT = "https://nebenaneinkaufen.next-site.de";
+
+// GLOBAL VARIABLES
+var mymap
 
 // HELPER FUNCTIONS
 function htmlEntities(str) {

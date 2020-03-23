@@ -1,5 +1,3 @@
-API_ENDPOINT = "https://nebenaneinkaufen.next-site.de";
-
 function addMarker(lon,lat,id){
     let path = "/api/store/"+id;
     $.ajax({url:API_ENDPOINT+path,error:function(xhr){alert("An error occured: " + xhr.status + " " + xhr.statusText)}, success:function(xhr){
@@ -9,53 +7,76 @@ function addMarker(lon,lat,id){
     }});
 }
 
-var mymap;
+function addGeoJSON(lon,lat,radius){
+    let path = "/api/stores/geo"//+"?lon="+lon+"&lat="+lat+"&"+"radius="+radius;
+    $.ajax({url:API_ENDPOINT+path,error:function(xhr){alert("An error occured: " + xhr.status + " " + xhr.statusText)}, success:function(xhr){
+        console.log(xhr)
+
+        var geojsonMarkerOptions = {
+            radius: 8,
+            fillColor: "#ff7800",
+            color: "#000",
+            weight: 1,
+            opacity: 1,
+            fillOpacity: 0.8
+        };
+
+        L.geoJSON(xhr, {
+            pointToLayer: function (feature, latlng) {
+                return L.circleMarker(latlng, geojsonMarkerOptions);
+            }
+        }).addTo(mymap);
+    }});
+}
 
 function setupMap(){
-    let hash = window.location.hash; //#location=51.530389,7.684544&radius=5
+    let hash = window.location.hash; //#location=51.530389,7.684544&radius=5&id=1&area=1
+
     if(hash){
-        let radius = parseInt(hash.match(/radius=(.*?)(&|$)/)[1]);
-        let lonlat = hash.match(/location=(.*?)(&|$)/)[1].split(",");
-        let lon = parseFloat(lonlat[0]);
-        let lat = parseFloat(lonlat[1]);
-        let id = hash.match(/id=(.*?)(&|$)/) ? hash.match(/id=(.*?)(&|$)/)[1] : false
-
-        if(id){
-            if(radius){
-                if(lonlat.length === 2){
-                    mymap = L.map('mapid').setView([lon, lat], radius);
-
-                    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
-                        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-                        maxZoom: 18,
-                        id: 'mapbox/streets-v11',
-                        tileSize: 512,
-                        zoomOffset: -1,
-                        accessToken: 'pk.eyJ1IjoicGljbW90aW9uIiwiYSI6ImNrODMzMnQ0NTAwZWMzbG83aW1qMnpwOHkifQ.1qI277PFv9xHGoEAcz3bZQ'
-                    }).addTo(mymap);
-
-                    addMarker(lon,lat,id)
-                    return 
-                } else {
-                    console.warn("Parameter loncation is missing 2 numbers seperated by a comma.")
-                }
-            } else {
-                console.warn("No radius found.")
-            }
-        } else {
-            console.warn("No id found.")
+        var radius = hash.match(/radius=(.*?)(&|$)/) ? parseInt(hash.match(/radius=(.*?)(&|$)/)[1]) : false;
+        var lonlat = hash.match(/location=(.*?)(&|$)/)[1] ? hash.match(/location=(.*?)(&|$)/)[1].split(",") : false;
+        if(lonlat.length === 2){
+            var lon = parseFloat(lonlat[0]);
+            var lat = parseFloat(lonlat[1]);
         }
+        var id = hash.match(/id=(.*?)(&|$)/) ? hash.match(/id=(.*?)(&|$)/)[1] : false
+        var area = hash.match(/area=(.*?)(&|$)/) ? true : false
     } else {
-        // default if fails to load map
-        mymap = L.map('mapid').setView([51.5, 7.1], 10); //Ruhrgebiet
-        L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
-            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-            maxZoom: 18,
-            id: 'mapbox/streets-v11',
-            tileSize: 512,
-            zoomOffset: -1,
-            accessToken: 'pk.eyJ1IjoicGljbW90aW9uIiwiYSI6ImNrODMzMnQ0NTAwZWMzbG83aW1qMnpwOHkifQ.1qI277PFv9xHGoEAcz3bZQ'
-        }).addTo(mymap);
+        radius = undefined;
+        lonlat = undefined;
+        lon = undefined;
+        lat = undefined;
+        id = undefined;
+        area = undefined;
+    }
+
+    if(!radius){
+        radius = 10
+    }
+    if(!lonlat){
+        lon = 51.5
+        lat = 7.1
+    }
+
+    mymap = L.map('mapid').setView([lon, lat], radius);
+
+    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+        maxZoom: 18,
+        id: 'mapbox/streets-v11',
+        tileSize: 512,
+        zoomOffset: -1,
+        accessToken: 'pk.eyJ1IjoicGljbW90aW9uIiwiYSI6ImNrODMzMnQ0NTAwZWMzbG83aW1qMnpwOHkifQ.1qI277PFv9xHGoEAcz3bZQ'
+    }).addTo(mymap);
+
+    if(id){
+        addMarker(lon,lat,id)
+    } else {
+        console.warn("No id found.")
+    }
+
+    if(area){
+        addGeoJSON(lon,lat,radius)
     }
 }
 
