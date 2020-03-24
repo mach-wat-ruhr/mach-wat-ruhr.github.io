@@ -1,11 +1,25 @@
-# https://mach.wat.ruhr
+# Nebaneinkaufen.de
 
-Wir wollen eine leichte und schnelle Platform schaffen damit über diese die kleine Lokalen Betriebe in Bochum und dem Ruhrgebiet
-gestärkt werden kann. Wenn sich die idee und Plattform bewährt kann diese auch einfach von anderen Städten übernommen werden.
+This project was created to support small local business in Germany that are affected by the COVID-19 crisis. The idea is to offer a small and stable platform as soon as possible to advertise changes in open-hours or how to support the business.
 
-# Idee
+Frontend: https://mach.wat.ruhr
 
-- [ ] Karte mit eingetragenen Geschäften
-- [ ] Informationen zu den Geschäften wie man Spenden kann und/oder Gutscheine kaufen.
-- [ ] Lokale Unternehmen anschreiben
-- [ ] Werbung in Sozialen Medien für diese Plattform
+Backend: https://github.com/binary-butterfly/shared-delivery
+
+# Features
+
+- [x] search for the businesses
+- [x] display each business on a map
+- [ ] offer a service to update data quickly
+- [ ] information that could help small business owners 
+- [ ] advertise the the platform when finished
+- [ ] contact the local *Wirtschaftsförderungen* to help with the verification of the data.
+
+*Optional:*
+- [ ] support multiple languages
+
+# Road Map
+Will be here soon.
+
+# Contribute
+For now create an issue and leave contact messages or send me short dm via twitter @t3gsec.
