@@ -4,6 +4,7 @@ function addMarker(lat,lon,id){
         console.log(xhr)
         var template = getCompanyCard(xhr.data);
         L.marker([lat,lon]).addTo(mymap).bindPopup(template);
+        addGeoJSON(lat,lon,10)
     }});
 }
 
@@ -20,20 +21,18 @@ function getPopupById(marker){
 function addGeoJSON(lat,lon,radius){
     let path = "/api/stores/geo"+"?lon="+lon+"&lat="+lat+"&"+"radius="+(radius*100);
     $.ajax({url:API_ENDPOINT+path,error:function(xhr){alert("An error occured: " + xhr.status + " " + xhr.statusText)}, success:function(xhr){
-        console.log(xhr)
-
-        var geojsonMarkerOptions = {
-            radius: 5,
-            fillColor: "#808080",
-            color: "#808080",
-            weight: 1,
-            opacity: 0.8,
-            fillOpacity: 0.4
-        };
+        console.log(xhr);
 
         L.geoJSON(xhr, {
             pointToLayer: function (feature, latlng) {
-                return L.circleMarker(latlng, geojsonMarkerOptions).bindPopup(getPopupById);
+                return L.circleMarker(latlng, {
+                    radius: 5,
+                    fillColor: feature.properties.verified ? "#11FF11":"#808080",
+                    color: feature.properties.verified ? "#11FF11":"#808080",
+                    weight: 1,
+                    opacity: 0.8,
+                    fillOpacity: 0.4
+                }).bindPopup(getPopupById);
             }
         }).addTo(mymap);
     }});
@@ -92,13 +91,13 @@ function setupMap(){
 
 function centerMap(lat,lon){
     mymap.panTo(new L.LatLng(lat, lon));
-    addGeoJSON(lat,lon,15*100)
+    addGeoJSON(lat,lon,15*10)
 }
 
 function searchMap(input) {
     if(input){
         console.log("Map search:",input)
-        mapboxurl = "https://api.mapbox.com/geocoding/v5/mapbox.places/"+input+".json?country=de&types=place&access_token="+MAPBOX_API_KEY
+        mapboxurl = "https://api.mapbox.com/geocoding/v5/mapbox.places/"+encodeURIComponent(input)+".json?country=de&types=place&access_token="+MAPBOX_API_KEY
         $.ajax({url:mapboxurl,error:function(xhr){alert("An error occured: " + xhr.status + " " + xhr.statusText)}, success:function(xhr){
             console.log(xhr)
             centerMap(xhr.features[0].center[1], xhr.features[0].center[0])

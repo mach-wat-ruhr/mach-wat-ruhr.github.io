@@ -1,15 +1,15 @@
-function search(text){
-  //Start search request *Wait for Backend*
-  json = "";
-  return json;
-}
-
 function sendToMainSearch(input){
   window.location.assign("/search/#input="+input);
 }
 
-function previewModal(){
-  
+function setupSingleView(){
+  let hash = window.location.hash; //#id=1
+  if(hash){
+    var id = hash.match(/id=(.*?)(&|$)/) ? hash.match(/id=(.*?)(&|$)/)[1] : false
+    if(id){
+      $("#cardbox").html(getCompanyCardById(id));
+    }
+  }
 }
 
 window.onload = function(){
@@ -26,4 +26,7 @@ window.onload = function(){
       sendToMainSearch($("#button-navbar-search-input").val());
     }
   });
+
+  //Load content in single view
+  setupSingleView()
 };
