@@ -27,11 +27,15 @@ function secondsTo24h(seconds){
 }
 
 function getOpeningHoursByDay(openingHoursJson, dayNum){
-    element = openingHoursJson.find(e => e.weekday === dayNum);
-    if(element){
-        return secondsTo24h(element.open) + " - " + secondsTo24h(element.close);
+    if(openingHoursJson){
+      element = openingHoursJson.find(e => e.weekday === dayNum);
+      if(element){
+          return secondsTo24h(element.open) + " - " + secondsTo24h(element.close);
+      } else {
+          return undefined
+      }
     } else {
-        return undefined
+      return undefined
     }
 }
 

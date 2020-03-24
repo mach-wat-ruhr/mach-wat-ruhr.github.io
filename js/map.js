@@ -7,8 +7,18 @@ function addMarker(lat,lon,id){
     }});
 }
 
+function getPopupById(marker){
+    id = marker.feature.properties.id
+    name = marker.feature.properties.name
+    console.log("Popup clicked:",id,name);
+    let path = "/api/store/"+id;
+    let json = JSON.parse($.ajax({url:API_ENDPOINT+path,async:false}).responseText);
+    console.log(json);
+    return getCompanyCard(json.data);
+}
+
 function addGeoJSON(lat,lon,radius){
-    let path = "/api/stores/geo"+"?lon="+lon+"&lat="+lat+"&"+"radius="+(radius*1000);
+    let path = "/api/stores/geo"+"?lon="+lon+"&lat="+lat+"&"+"radius="+(radius*100);
     $.ajax({url:API_ENDPOINT+path,error:function(xhr){alert("An error occured: " + xhr.status + " " + xhr.statusText)}, success:function(xhr){
         console.log(xhr)
 
@@ -17,13 +27,13 @@ function addGeoJSON(lat,lon,radius){
             fillColor: "#808080",
             color: "#808080",
             weight: 1,
-            opacity: 1,
-            fillOpacity: 0.8
+            opacity: 0.8,
+            fillOpacity: 0.4
         };
 
         L.geoJSON(xhr, {
             pointToLayer: function (feature, latlng) {
-                return L.circleMarker(latlng, geojsonMarkerOptions);
+                return L.circleMarker(latlng, geojsonMarkerOptions).bindPopup(getPopupById);
             }
         }).addTo(mymap);
     }});
@@ -51,11 +61,11 @@ function setupMap(){
     }
 
     if(!radius){
-        radius = 10
+        radius = 11
     }
     if(!latlon){
-        lat = 51.500000
-        lon = 7.100000
+        lat = 51.48333
+        lon = 7.21667
     }
 
     mymap = L.map('mapid').setView([lat, lon], radius);
@@ -76,7 +86,7 @@ function setupMap(){
     }
 
     if(area){
-        addGeoJSON(lat,lon,radius)
+        addGeoJSON(lat,lon,radius*30)
     }
 }
 
