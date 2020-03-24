@@ -1,5 +1,6 @@
 // GLOBAL CONSTANTS
 const API_ENDPOINT = "https://nebenaneinkaufen.next-site.de";
+const MOD = ""
 const MAPBOX_API_KEY = "pk.eyJ1IjoicGljbW90aW9uIiwiYSI6ImNrODMzMnQ0NTAwZWMzbG83aW1qMnpwOHkifQ.1qI277PFv9xHGoEAcz3bZQ";
 
 // GLOBAL VARIABLES
@@ -46,7 +47,7 @@ function getCompanyCard(jsonCompanyElement){
                   <b><i class="fas fa-map-marked-alt"></i></b>
                 </div>
                 <div class="col-11">
-                  <a href="/map/#location=`+checkOutput(jsonCompanyElement.location)+`&radius=15&id=`+checkOutput(jsonCompanyElement.id)+`">`+checkOutput(jsonCompanyElement.address+", "+jsonCompanyElement.postalcode+" "+jsonCompanyElement.locality+", "+jsonCompanyElement.country)+`</a>
+                  <a href="/map/#location=`+checkOutput(jsonCompanyElement.region_lat+","+jsonCompanyElement.region_lon)+`&radius=15&id=`+checkOutput(jsonCompanyElement.id)+`&area=1">`+checkOutput(jsonCompanyElement.address+", "+jsonCompanyElement.postalcode+" "+jsonCompanyElement.locality+", "+jsonCompanyElement.country)+`</a>
                 </div>
               </div>
               `+checkOutput(jsonCompanyElement.description)+`
