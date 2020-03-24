@@ -1,19 +1,19 @@
-function addMarker(lon,lat,id){
+function addMarker(lat,lon,id){
     let path = "/api/store/"+id;
     $.ajax({url:API_ENDPOINT+path,error:function(xhr){alert("An error occured: " + xhr.status + " " + xhr.statusText)}, success:function(xhr){
         console.log(xhr)
         var template = getCompanyCard(xhr.data);
-        L.marker([lon,lat]).addTo(mymap).bindPopup(template);
+        L.marker([lat,lon]).addTo(mymap).bindPopup(template);
     }});
 }
 
-function addGeoJSON(lon,lat,radius){
-    let path = "/api/stores/geo"+"?lon="+lon+"&lat="+lat+"&"+"radius="+radius;
+function addGeoJSON(lat,lon,radius){
+    let path = "/api/stores/geo"+"?lon="+lon+"&lat="+lat+"&"+"radius="+(radius*1000);
     $.ajax({url:API_ENDPOINT+path,error:function(xhr){alert("An error occured: " + xhr.status + " " + xhr.statusText)}, success:function(xhr){
         console.log(xhr)
 
         var geojsonMarkerOptions = {
-            radius: 2,
+            radius: 5,
             fillColor: "#808080",
             color: "#808080",
             weight: 1,
@@ -34,16 +34,16 @@ function setupMap(){
 
     if(hash){
         var radius = hash.match(/radius=(.*?)(&|$)/) ? parseInt(hash.match(/radius=(.*?)(&|$)/)[1]) : false;
-        var lonlat = hash.match(/location=(.*?)(&|$)/)[1] ? hash.match(/location=(.*?)(&|$)/)[1].split(",") : false;
-        if(lonlat.length === 2){
-            var lon = parseFloat(lonlat[0]);
-            var lat = parseFloat(lonlat[1]);
+        var latlon = hash.match(/location=(.*?)(&|$)/)[1] ? hash.match(/location=(.*?)(&|$)/)[1].split(",") : false;
+        if(latlon.length === 2){
+            var lat = parseFloat(latlon[0]);
+            var lon = parseFloat(latlon[1]);
         }
         var id = hash.match(/id=(.*?)(&|$)/) ? hash.match(/id=(.*?)(&|$)/)[1] : false
         var area = hash.match(/area=(.*?)(&|$)/) ? true : false
     } else {
         radius = undefined;
-        lonlat = undefined;
+        latlon = undefined;
         lon = undefined;
         lat = undefined;
         id = undefined;
@@ -53,12 +53,12 @@ function setupMap(){
     if(!radius){
         radius = 10
     }
-    if(!lonlat){
-        lon = 51.5
-        lat = 7.1
+    if(!latlon){
+        lat = 51.500000
+        lon = 7.100000
     }
 
-    mymap = L.map('mapid').setView([lon, lat], radius);
+    mymap = L.map('mapid').setView([lat, lon], radius);
 
     L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
         attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -70,13 +70,13 @@ function setupMap(){
     }).addTo(mymap);
 
     if(id){
-        addMarker(lon,lat,id)
+        addMarker(lat,lon,id)
     } else {
         console.warn("No id found.")
     }
 
     if(area){
-        addGeoJSON(lon,lat,radius)
+        addGeoJSON(lat,lon,radius)
     }
 }
 
