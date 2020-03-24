@@ -66,7 +66,7 @@ function setupMap(){
         id: 'mapbox/streets-v11',
         tileSize: 512,
         zoomOffset: -1,
-        accessToken: 'pk.eyJ1IjoicGljbW90aW9uIiwiYSI6ImNrODMzMnQ0NTAwZWMzbG83aW1qMnpwOHkifQ.1qI277PFv9xHGoEAcz3bZQ'
+        accessToken: MAPBOX_API_KEY
     }).addTo(mymap);
 
     if(id){
@@ -80,10 +80,19 @@ function setupMap(){
     }
 }
 
+function centerMap(lat,lon){
+    mymap.panTo(new L.LatLng(lat, lon));
+    addGeoJSON(lat,lon,15*100)
+}
 
 function searchMap(input) {
     if(input){
         console.log("Map search:",input)
+        mapboxurl = "https://api.mapbox.com/geocoding/v5/mapbox.places/"+input+".json?country=de&types=place&access_token="+MAPBOX_API_KEY
+        $.ajax({url:mapboxurl,error:function(xhr){alert("An error occured: " + xhr.status + " " + xhr.statusText)}, success:function(xhr){
+            console.log(xhr)
+            centerMap(xhr.features[0].center[1], xhr.features[0].center[0])
+        }});
     } else {
         console.warn("Error map search:",input)
     }

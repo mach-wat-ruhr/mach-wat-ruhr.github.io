@@ -1,5 +1,6 @@
 // GLOBAL CONSTANTS
 const API_ENDPOINT = "https://nebenaneinkaufen.next-site.de";
+const MAPBOX_API_KEY = "pk.eyJ1IjoicGljbW90aW9uIiwiYSI6ImNrODMzMnQ0NTAwZWMzbG83aW1qMnpwOHkifQ.1qI277PFv9xHGoEAcz3bZQ";
 
 // GLOBAL VARIABLES
 var mymap
