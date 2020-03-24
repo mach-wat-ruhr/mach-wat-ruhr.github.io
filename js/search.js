@@ -220,11 +220,6 @@ function showError(){
   search_results.html("Keine Einträge gefunden.");
 }
 
-// API Access
-
-// API_ENDPOINT = "http://127.0.0.1:4000"
-API_ENDPOINT = "https://nebenaneinkaufen.next-site.de"
-
 function getStoreById(id){
   let path = "/api/store/"+id;
   $.ajax({url:API_ENDPOINT+path,error:function(xhr){alert("An error occured: " + xhr.status + " " + xhr.statusText)}, success:function(xhr){console.log(xhr)}})
