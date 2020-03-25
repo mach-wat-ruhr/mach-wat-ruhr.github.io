@@ -36,10 +36,6 @@ function setupSearch(){
   showResult(result)
 }
 
-function htmlEntities(str) {
-    return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-}
-
 function search(input){
   console.log("Sending input to server:",input);
   getStoresBySearch(input);

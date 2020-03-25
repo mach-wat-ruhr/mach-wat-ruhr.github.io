@@ -31,4 +31,6 @@ window.onload = function(){
   setupSingleView();
   //Message of the day
   setupMoD();
+  //Setup the Add Company dialog
+  setupAddCompany()
 };

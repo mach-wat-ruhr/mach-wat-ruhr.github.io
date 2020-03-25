@@ -1,6 +1,6 @@
 function addMarker(lat,lon,id){
     let path = "/api/store/"+id;
-    $.ajax({url:API_ENDPOINT+path,error:function(xhr){alert("An error occured: " + xhr.status + " " + xhr.statusText)}, success:function(xhr){
+    $.ajax({url:API_ENDPOINT+path,error:function(xhr){console.error("An error occured: " + xhr.status + " " + xhr.statusText)}, success:function(xhr){
         console.log(xhr)
         var template = getCompanyCard(xhr.data);
         L.marker([lat,lon]).addTo(mymap).bindPopup(template);
@@ -20,7 +20,7 @@ function getPopupById(marker){
 
 function addGeoJSON(lat,lon,radius){
     let path = "/api/stores/geo"+"?lon="+lon+"&lat="+lat+"&"+"radius="+(radius*100);
-    $.ajax({url:API_ENDPOINT+path,error:function(xhr){alert("An error occured: " + xhr.status + " " + xhr.statusText)}, success:function(xhr){
+    $.ajax({url:API_ENDPOINT+path,error:function(xhr){console.error("An error occured: " + xhr.status + " " + xhr.statusText)}, success:function(xhr){
         console.log(xhr);
 
         L.geoJSON(xhr, {
@@ -98,7 +98,7 @@ function searchMap(input) {
     if(input){
         console.log("Map search:",input)
         mapboxurl = "https://api.mapbox.com/geocoding/v5/mapbox.places/"+encodeURIComponent(input)+".json?country=de&types=place&access_token="+MAPBOX_API_KEY
-        $.ajax({url:mapboxurl,error:function(xhr){alert("An error occured: " + xhr.status + " " + xhr.statusText)}, success:function(xhr){
+        $.ajax({url:mapboxurl,error:function(xhr){console.error("An error occured: " + xhr.status + " " + xhr.statusText)}, success:function(xhr){
             console.log(xhr)
             centerMap(xhr.features[0].center[1], xhr.features[0].center[0])
         }});

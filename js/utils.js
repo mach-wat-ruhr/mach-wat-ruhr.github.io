@@ -26,6 +26,8 @@ function secondsTo24h(seconds){
 }
 
 function getOpeningHoursByDay(openingHoursJson, dayNum){
+    console.log(openingHoursJson, dayNum);
+    
     if(openingHoursJson){
       element = openingHoursJson.find(e => e.weekday === dayNum);
       if(element){
@@ -36,6 +38,36 @@ function getOpeningHoursByDay(openingHoursJson, dayNum){
     } else {
       return undefined
     }
+}
+
+function getOpeningHoursOpenByDay(openingHoursJson, dayNum){
+  console.log(openingHoursJson, dayNum);
+  
+  if(openingHoursJson){
+    element = openingHoursJson.find(e => e.weekday === dayNum);
+    if(element){
+        return secondsTo24h(element.open);
+    } else {
+        return undefined
+    }
+  } else {
+    return undefined
+  }
+}
+
+function getOpeningHoursCloseByDay(openingHoursJson, dayNum){
+  console.log(openingHoursJson, dayNum);
+  
+  if(openingHoursJson){
+    element = openingHoursJson.find(e => e.weekday === dayNum);
+    if(element){
+        return secondsTo24h(element.close);
+    } else {
+        return undefined
+    }
+  } else {
+    return undefined
+  }
 }
 
 function getCompanyCardById(id){
@@ -54,14 +86,20 @@ function getCompanyCard(jsonCompanyElement){
       <div class="col">
         <div class="card ">
           <div class="card-body">
-            <h5 class="card-title">`+checkOutput(jsonCompanyElement.name)+`</h5><a class="pull-right" href=""><i class="fas fa-share-alt"></i></a>
+            <h5 class="card-title">`+checkOutput(jsonCompanyElement.name)+`</h5>
             <p class="card-text">
               <div class="row mb-1">
                 <div class="col-1">
                   <b><i class="fas fa-map-marked-alt"></i></b>
                 </div>
-                <div class="col-11">
+                <div class="col-8">
                   <a href="/map/#location=`+checkOutput(jsonCompanyElement.lat+","+jsonCompanyElement.lon)+`&radius=1500&id=`+checkOutput(jsonCompanyElement.id)+`">`+checkOutput(jsonCompanyElement.address+", "+jsonCompanyElement.postalcode+" "+jsonCompanyElement.locality+", "+jsonCompanyElement.country)+`</a>
+                </div>
+                <div class="col-1">
+                <a class="pull-right lead" href="`+document.location.protocol+"//"+document.location.host+"/company/#id="+checkOutput(jsonCompanyElement.id)+`" aria-label="Einzelansicht zum Teilen"><i class="fas fa-share-alt"></i></a>
+                </div>
+                <div class="col-1">
+                <a class="pull-right lead" href="`+document.location.protocol+"//"+document.location.host+"/add-company/#id="+checkOutput(jsonCompanyElement.id)+`" aria-label="Bearbeiten"><i class="fas fa-pen"></i></a>
                 </div>
               </div>
               `+checkOutput(jsonCompanyElement.description)+`

@@ -6,16 +6,17 @@ layout: default
   <p>Mit diesem Formular könnt ihr euer Unternehmen in die Datenbank eintragen lassen.</p>
   <form>
     <div class="form-group">
-      <label for="Name">Namen des Unternehmens:</label>
+      <label for="Name">Namen des Unternehmens<span class="text-danger">*</span>:</label>
       <input type="text" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Name">
+      <input type="text" id="id" placeholder="Id" hidden>
     </div>
     <div class="form-group">
-      <label for="email">E-Mail</label>
+      <label for="email">E-Mail<span class="text-danger">*</span>:</label>
       <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="mail@domain.de">
       <small id="emailHelp" class="form-text text-muted">Diese wird auch genutzt damit ihr am Ende von den Unterstützern kontaktiert werden könnt.</small>
     </div>
     <div class="form-group">
-      <label for="password">Passwort:</label>
+      <label for="password">Passwort<span class="text-danger">*</span>:</label>
       <input type="password" class="form-control" id="password" aria-describedby="passwordHelp" placeholder="Passwort">
       <small id="passwordHelp" class="form-text text-muted">Das Passwort braucht ihr um Änderungen zu machen.</small>
     </div>
@@ -23,7 +24,7 @@ layout: default
       <label for="description">Ein kleiner persönlicher Text und Hilferuf:</label>
       <textarea class="form-control" id="description" rows="4" placeholder="Hallo wir sind XYZ und brauchen eure Unterstützung..."></textarea>
     </div>
-    <div class="form-group">
+    <!-- <div class="form-group">
       <label for="categorySelect">Wähle die Passende Kategorie aus:</label>
       <select class="form-control" id="categorySelect">
         <option>Einzelhandel</option>
@@ -31,28 +32,28 @@ layout: default
         <option>Selbständig</option>
         <option>ToDo</option>
       </select>
-    </div>
+    </div> -->
     <div class="form-group">
       <label for="contact">Kontaktdaten:</label>
-      <input type="text" class="form-control" id="contact_name" placeholder="Vorname Nachname">
-      <input type="text" class="form-control mt-2" id="contact_tel" placeholder="+49123456789">
+      <input type="text" class="form-control" id="name" placeholder="Vorname Nachname">
+      <input type="text" class="form-control mt-2" id="phone" placeholder="Tel: +49123456789">
+      <input type="text" class="form-control mt-2" id="mobile" placeholder="Mob: +49123456789">
+      <input type="text" class="form-control mt-2" id="fax" placeholder="Fax: +49123456789">
+      <input type="text" class="form-control mt-2" id="website" placeholder="https://website.tld">
     </div>
     <div class="form-group">
       <label for="contact">Adresse:</label>
       <div class="row">
-        <div class="col-9">
-          <input type="text" class="form-control" id="contact_name" placeholder="Straße">
-        </div>
-        <div class="col-3">
-          <input type="text" class="form-control" id="contact_tel" placeholder="Hausnummer">
+        <div class="col-12">
+          <input type="text" class="form-control" id="address" placeholder="Straße Nr.">
         </div>
       </div>
       <div class="row mt-2">
         <div class="col-5">
-          <input type="text" class="form-control" id="contact_tel" placeholder="PLZ">
+          <input type="text" class="form-control" id="postalcode" placeholder="PLZ">
         </div>
         <div class="col-7">
-          <input type="text" class="form-control" id="contact_tel" placeholder="Ort">
+          <input type="text" class="form-control" id="locality" placeholder="Ort">
         </div>
       </div>
     </div>
@@ -71,43 +72,58 @@ layout: default
         </div>
         <div class="col-4">
           <p class="text-center">Start</p>
-          <input type="text" class="form-control" placeholder="00:00">
-          <input type="text" class="form-control" placeholder="00:00">
-          <input type="text" class="form-control" placeholder="00:00">
-          <input type="text" class="form-control" placeholder="00:00">
-          <input type="text" class="form-control" placeholder="00:00">
-          <input type="text" class="form-control" placeholder="00:00">
-          <input type="text" class="form-control" placeholder="00:00">
+          <input id="oh-start-1" type="text" class="form-control" placeholder="00:00">
+          <input id="oh-start-2" type="text" class="form-control" placeholder="00:00">
+          <input id="oh-start-3" type="text" class="form-control" placeholder="00:00">
+          <input id="oh-start-4" type="text" class="form-control" placeholder="00:00">
+          <input id="oh-start-5" type="text" class="form-control" placeholder="00:00">
+          <input id="oh-start-6" type="text" class="form-control" placeholder="00:00">
+          <input id="oh-start-7" type="text" class="form-control" placeholder="00:00">
         </div>
         <div class="col-4">
           <p class="text-center">Ende</p>
-          <input type="text" class="form-control" placeholder="23:59">
-          <input type="text" class="form-control" placeholder="23:59">
-          <input type="text" class="form-control" placeholder="23:59">
-          <input type="text" class="form-control" placeholder="23:59">
-          <input type="text" class="form-control" placeholder="23:59">
-          <input type="text" class="form-control" placeholder="23:59">
-          <input type="text" class="form-control" placeholder="23:59">
+          <input id="oh-end-1" type="text" class="form-control" placeholder="23:59">
+          <input id="oh-end-2" type="text" class="form-control" placeholder="23:59">
+          <input id="oh-end-3" type="text" class="form-control" placeholder="23:59">
+          <input id="oh-end-4" type="text" class="form-control" placeholder="23:59">
+          <input id="oh-end-5" type="text" class="form-control" placeholder="23:59">
+          <input id="oh-end-6" type="text" class="form-control" placeholder="23:59">
+          <input id="oh-end-7" type="text" class="form-control" placeholder="23:59">
         </div>
       </div>
     </div>
     <div class="form-group">
       <label for="description">Gutschein:</label>
-      <textarea class="form-control" id="description" rows="1" placeholder=""></textarea>
+      <textarea id="website_coupon" class="form-control" id="description" rows="1" placeholder=""></textarea>
     </div>
     <div class="form-group">
       <label for="description">Crowd Founding:</label>
-      <textarea class="form-control" id="description" rows="1" placeholder=""></textarea>
+      <textarea id="website_crowdfunding" class="form-control" id="description" rows="1" placeholder=""></textarea>
     </div>
     <div class="row">
       <div class="col-6">
-        <button class="btn btn-outline-success">Vorschau</button>
+        <button id="preview" data-toggle="modal" data-target="#previewModal" class="btn btn-outline-success">Vorschau</button>
       </div>
       <div class="col-6">
         <div class="text-right">
-          <button class="btn btn-outline-danger">Abschicken</button>
+          <button id="submitCompany" class="btn btn-outline-danger">Abschicken</button>
         </div>
       </div>
     </div>
   </form>
 </div>
+<div class="modal" tabindex="-1" role="dialog" id="previewModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Vorschau</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div id="previewModalContent" class="modal-body">
+      </div>
+    </div>
+  </div>
+</div>
+<script src="/js/add-company.js"></script>
