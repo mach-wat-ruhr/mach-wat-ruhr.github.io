@@ -54,7 +54,7 @@ function getCompanyCard(jsonCompanyElement){
       <div class="col">
         <div class="card ">
           <div class="card-body">
-            <h5 class="card-title">`+checkOutput(jsonCompanyElement.name)+`</h5>
+            <h5 class="card-title">`+checkOutput(jsonCompanyElement.name)+`</h5><a class="pull-right" href=""><i class="fas fa-share-alt"></i></a>
             <p class="card-text">
               <div class="row mb-1">
                 <div class="col-1">
