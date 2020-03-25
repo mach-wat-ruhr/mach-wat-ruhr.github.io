@@ -28,5 +28,7 @@ window.onload = function(){
   });
 
   //Load content in single view
-  setupSingleView()
+  setupSingleView();
+  //Message of the day
+  setupMoD();
 };

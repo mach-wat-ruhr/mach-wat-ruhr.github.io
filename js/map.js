@@ -26,7 +26,7 @@ function addGeoJSON(lat,lon,radius){
         L.geoJSON(xhr, {
             pointToLayer: function (feature, latlng) {
                 return L.circleMarker(latlng, {
-                    radius: 5,
+                    radius: 8,
                     fillColor: feature.properties.verified ? "#11FF11":"#808080",
                     color: feature.properties.verified ? "#11FF11":"#808080",
                     weight: 1,
@@ -121,4 +121,7 @@ window.onload = function(){
             searchMap(input);
         }
     });
+
+    //Message of the day
+    this.setupMoD();
 };

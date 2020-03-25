@@ -1,6 +1,5 @@
 // GLOBAL CONSTANTS
 const API_ENDPOINT = "https://nebenaneinkaufen.next-site.de";
-const MOD = "Diese Anwendung befindet sich noch im Aufbau!";
 const MAPBOX_API_KEY = "pk.eyJ1IjoicGljbW90aW9uIiwiYSI6ImNrODMzMnQ0NTAwZWMzbG83aW1qMnpwOHkifQ.1qI277PFv9xHGoEAcz3bZQ";
 
 // GLOBAL VARIABLES
@@ -179,4 +178,17 @@ function getCompanyCard(jsonCompanyElement){
         </div>
       </div>
     </div>`;
+}
+
+//Setup functions to populate the current view.
+//Message of the Day
+function setupMoD(){
+  if (sessionStorage.getItem("mod_visible") === "true" || sessionStorage.getItem("mod_visible") == undefined){
+    $(".alert").show()
+  } else {
+    $(".alert").hide()
+  }
+  $("#mod-close-alert").click(function(obj){
+    sessionStorage.setItem("mod_visible", false)
+  });
 }

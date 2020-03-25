@@ -1,19 +1,3 @@
-function sendToMainSearch(input){
-  window.location.assign("/search/#input="+input);
-  setupSearch();
-}
-
-function setupSearch(){
-  let hash = $(location).attr('hash')
-  if(hash == ""){
-    return;
-  }
-  let input = hash.substring(hash.indexOf("input=")+6);
-  $("#search").val(htmlEntities(input));
-  result = search(input)
-  showResult(result)
-}
-
 window.onload = function(){
   setupSearch();
 
@@ -30,8 +14,27 @@ window.onload = function(){
         window.location.hash = "#input="+input;
         result = search(input)
     }
-});
+  });
+
+  //Message of the day
+  this.setupMoD();
 };
+
+function sendToMainSearch(input){
+  window.location.assign("/search/#input="+input);
+  setupSearch();
+}
+
+function setupSearch(){
+  let hash = $(location).attr('hash')
+  if(hash == ""){
+    return;
+  }
+  let input = hash.substring(hash.indexOf("input=")+6);
+  $("#search").val(htmlEntities(input));
+  result = search(input)
+  showResult(result)
+}
 
 function htmlEntities(str) {
     return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
