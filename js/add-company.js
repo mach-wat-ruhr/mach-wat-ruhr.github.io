@@ -59,7 +59,7 @@ function insertValue(id,value){
 }
 
 function getFormData(){
-    return {
+    formData = {
         id : $("#id").val(),
         name : $("#name").val(),
         email: $("#email").val(),
@@ -75,8 +75,11 @@ function getFormData(){
         locality : $("#locality").val(),
         "opening-time" : getOpeningTimeAsArray(),
         website_coupon : $("#website_coupon").val(),
-        website_crowdfunding : $("#website_crowdfunding").val()
-    }
+        website_crowdfunding : $("#website_crowdfunding").val(),
+        isOwner : $("#isOwner").is(":checked")
+    };
+    console.log(formData);
+    return formData
 }
 
 function getOpeningTimeAsArray(){

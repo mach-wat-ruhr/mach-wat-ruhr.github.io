@@ -68,26 +68,30 @@
 </div>
     <div class="container top">
   <h1>Unternehmen eintragen</h1>
-  <p>Mit diesem Formular könnt ihr euer Unternehmen in die Datenbank eintragen lassen.</p>
+  <p>
+    Mit diesem Formular könnt ihr euer Unternehmen in die Datenbank eintragen lassen. Schaut doch 
+    vorher in der <a href="/search/">Suche</a> ob ihr euer Unternehmen finde. Mit <i class="fas fa-pen"></i>
+    könnt ihr eure Daten sofort aus der Suche übernehmen.
+  </p>
   <form>
     <div class="form-group">
       <label for="Name">Namen des Unternehmens<span class="text-danger">*</span>:</label>
-      <input type="text" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Name">
-      <input type="text" id="id" placeholder="Id" hidden>
+      <input type="text" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Name" required>
+      <input type="text" id="id" placeholder="Id" value="-1" hidden>
     </div>
     <div class="form-group">
       <label for="email">E-Mail<span class="text-danger">*</span>:</label>
-      <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="mail@domain.de">
+      <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="mail@domain.de" required>
       <small id="emailHelp" class="form-text text-muted">Diese wird auch genutzt damit ihr am Ende von den Unterstützern kontaktiert werden könnt.</small>
     </div>
     <div class="form-group">
-      <label for="password">Passwort<span class="text-danger">*</span>:</label>
+      <label for="password">Passwort:</label>
       <input type="password" class="form-control" id="password" aria-describedby="passwordHelp" placeholder="Passwort">
-      <small id="passwordHelp" class="form-text text-muted">Das Passwort braucht ihr um Änderungen zu machen.</small>
+      <small id="passwordHelp" class="form-text text-muted">Das Passwort braucht ihr um Änderungen zu machen. Falls ihr noch keins habt, bekommt ihr nach der Verifizierung eins.</small>
     </div>
     <div class="form-group">
       <label for="description">Ein kleiner persönlicher Text und Hilferuf:</label>
-      <textarea class="form-control" id="description" rows="4" placeholder="Hallo wir sind XYZ und brauchen eure Unterstützung..."></textarea>
+      <textarea class="form-control" id="description" rows="4" placeholder="Beispiel: Hallo wir sind XYZ, und brauchen Hilfe bei X, aktuell machen wir es möglich bei uns Y abzuholen. Ich fahre abends immer mit dem Fahrrad durch die Innenstadt und kann ihre Bestellung Z auch gerne bei ihnen kontaktlos vorbei bringen. Bezahlt wird bei uns mit ..."></textarea>
     </div>
     <!-- <div class="form-group">
       <label for="categorySelect">Wähle die Passende Kategorie aus:</label>
@@ -114,7 +118,7 @@
       <input type="text" class="form-control mt-2" id="website" placeholder="https://website.tld">
     </div>
     <div class="form-group">
-      <label for="contact">Adresse:</label>
+      <label for="contact">Adresse<span class="text-danger">*</span>:</label>
       <div class="row">
         <div class="col-12">
           <input type="text" class="form-control" id="address" placeholder="Straße Nr.">
@@ -130,7 +134,7 @@
       </div>
     </div>
     <div class="form-group">
-      <label for="contact">Öffnungszeiten:</label>
+      <p aria-describedby="openingHoursHelp">Öffnungszeiten:</p>
       <div class="row">
         <div class="col-3">
           <p>Wochentag</p>
@@ -163,26 +167,31 @@
           <input id="oh-end-7" type="text" class="form-control" placeholder="23:59">
         </div>
       </div>
+      <small id="openingHoursHelp" class="form-text text-muted">Trage die Uhrzeiten im 24h-Format ein. An geschlossenen Tagen die Felder leer lassen.</small>
     </div>
     <div class="form-group">
       <label for="description">Gutschein:</label>
-      <textarea id="website_coupon" class="form-control" id="description" rows="1" placeholder=""></textarea>
+      <input type="text" id="website_coupon" class="form-control" placeholder="URL zur Gutschein Webseite"></input>
     </div>
     <div class="form-group">
       <label for="description">Crowd Founding:</label>
-      <textarea id="website_crowdfunding" class="form-control" id="description" rows="1" placeholder=""></textarea>
+      <input type="text" id="website_crowdfunding" class="form-control" placeholder="URL zur Crowd Funding Webseite"></input>
     </div>
-    <div class="row">
-      <div class="col-6">
-        <button id="preview" data-toggle="modal" data-target="#previewModal" class="btn btn-outline-success">Vorschau</button>
-      </div>
-      <div class="col-6">
-        <div class="text-right">
-          <button id="submitCompany" class="btn btn-outline-danger">Abschicken</button>
-        </div>
-      </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" value="" id="isOwner" aria-describedby="isOwnerHelp">
+      <label class="form-check-label" for="defaultCheck1">
+        Haken setzen wenn du zu dem Unternehmen gehörst oder der Eigentümer bist.
+      </label>
+      <small id="isOwnerHelp" class="form-text text-muted">Zur Überprüfung werden wir dann Kontakt aufnehmen und dich verifizieren.</small>
+    </div>
+    <div class="text-right">
+      <button id="submitCompany" class="btn btn-outline-danger">Abschicken</button>
     </div>
   </form>
+  <div class="text-right mt-4">
+    <button id="preview" data-toggle="modal" data-target="#previewModal" class="btn btn-outline-success">Vorschau</button>
+  </div>
+  
 </div>
 <div class="modal" tabindex="-1" role="dialog" id="previewModal">
   <div class="modal-dialog" role="document">
