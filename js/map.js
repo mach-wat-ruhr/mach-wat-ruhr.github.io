@@ -23,7 +23,9 @@ function addGeoJSON(lat,lon,radius){
     $.ajax({url:API_ENDPOINT+path,error:function(xhr){console.error("An error occured: " + xhr.status + " " + xhr.statusText)}, success:function(xhr){
         console.log(xhr);
 
-        L.geoJSON(xhr, {
+        var markers = L.markerClusterGroup();
+
+        var geoJsonLayer = L.geoJSON(xhr, {
             pointToLayer: function (feature, latlng) {
                 return L.circleMarker(latlng, {
                     radius: 8,
@@ -34,7 +36,11 @@ function addGeoJSON(lat,lon,radius){
                     fillOpacity: 0.4
                 }).bindPopup(getPopupById);
             }
-        }).addTo(mymap);
+        })
+
+        markers.addLayer(geoJsonLayer);
+        
+        mymap.addLayer(markers);
     }});
 }
 
