@@ -26,8 +26,6 @@ function secondsTo24h(seconds){
 }
 
 function getOpeningHoursByDay(openingHoursJson, dayNum){
-    console.log(openingHoursJson, dayNum);
-    
     if(openingHoursJson){
       element = openingHoursJson.find(e => e.weekday === dayNum);
       if(element){
@@ -41,8 +39,6 @@ function getOpeningHoursByDay(openingHoursJson, dayNum){
 }
 
 function getOpeningHoursOpenByDay(openingHoursJson, dayNum){
-  console.log(openingHoursJson, dayNum);
-  
   if(openingHoursJson){
     element = openingHoursJson.find(e => e.weekday === dayNum);
     if(element){
@@ -56,8 +52,6 @@ function getOpeningHoursOpenByDay(openingHoursJson, dayNum){
 }
 
 function getOpeningHoursCloseByDay(openingHoursJson, dayNum){
-  console.log(openingHoursJson, dayNum);
-  
   if(openingHoursJson){
     element = openingHoursJson.find(e => e.weekday === dayNum);
     if(element){

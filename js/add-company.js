@@ -60,29 +60,40 @@ function insertValue(id,value){
 
 function getFormData(){
     return {
-        id : $("#id",data.id),
-        name : $("#name",data.name),
-        email: $("#email",data.email)
-        // : $("#description",data.description),
-        // : $("#firstname",data.firstname),
-        // : $("#lastname",data.lastname),
-        // : $("#phone",data.phone),
-        // : $("#mobile",data.mobile),
-        // : $("#fax",data.fax),
-        // : $("#website",data.website),
-        // : $("#address",data.address),
-        // : $("#postalcode",data.postalcode),
-        // : $("#locality",data.locality),
-        // : $("#oh-start-1"
-        // : $("#website_coupon",
-        // : $("#website_crowdfunding"
+        id : $("#id").val(),
+        name : $("#name").val(),
+        email: $("#email").val(),
+        description : $("#description").val(),
+        firstname : $("#firstname").val(),
+        lastname : $("#lastname").val(),
+        phone : $("#phone").val(),
+        mobile : $("#mobile").val(),
+        fax : $("#fax").val(),
+        website : $("#website").val(),
+        address : $("#address").val(),
+        postalcode : $("#postalcode").val(),
+        locality : $("#locality").val(),
+        "opening-time" : getOpeningTimeAsArray(),
+        website_coupon : $("#website_coupon").val(),
+        website_crowdfunding : $("#website_crowdfunding").val()
     }
 }
 
-function sendFormData(){
-
+function getOpeningTimeAsArray(){
+    return [];
 }
 
-$("#preview").click(function(obj){
-    $("#previewModalContent").html(getCompanyCard(getFormData()))
-});
+function sendFormData(formData){
+    $.ajax({
+        type: "POST",
+        url: API_ENDPOINT+"/api/store/1",
+        dataType: "json",
+        data: JSON.stringify(formData),
+        success: function(xhr){
+            console.log(xhr);
+        },
+        error: function(xhr){
+            console.error("An error occured: " + xhr.status + " " + xhr.statusText)
+        }
+    });
+}
