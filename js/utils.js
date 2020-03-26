@@ -66,6 +66,9 @@ function getOpeningHoursCloseByDay(openingHoursJson, dayNum){
 
 function getCompanyCardById(id){
   if(id){
+    if(id === "-1"){
+      return undefined;
+    }
     let path = "/api/store/"+id;
     let json = JSON.parse($.ajax({url:API_ENDPOINT+path,async:false}).responseText);
     if(json){

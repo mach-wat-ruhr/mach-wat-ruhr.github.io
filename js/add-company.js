@@ -4,6 +4,9 @@ function setupAddCompany(){
     if(hash){
         var id = hash.match(/id=(.*?)(&|$)/) ? hash.match(/id=(.*?)(&|$)/)[1] : false
         if(id){
+            if(id === "-1"){
+                return undefined;
+            }
             let path = "/api/store/"+id;
             $.ajax({url:API_ENDPOINT+path,error:function(xhr){console.error("An error occured: " + xhr.status + " " + xhr.statusText)}, success:function(xhr){
                 console.log(xhr);
