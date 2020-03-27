@@ -18,6 +18,16 @@ function checkOutput(str){
     }
 } 
 
+function hoursStrToSeconds(hourStr){
+  var hours = parseInt(hourStr.split(":")[0])
+  var sec = parseInt(hourStr.split(":")[1])
+
+  console.log(hours,sec);
+  
+
+  return (3600 * hours) + sec; 
+}
+
 function secondsTo24h(seconds){
     hours = Math.floor(seconds / 3600); 
     minutes = Math.floor((seconds - (hours * 3600)) / 60); 

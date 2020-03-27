@@ -106,7 +106,7 @@ function getFormData(){
         address : $("#address").val(),
         postalcode : $("#postalcode").val(),
         locality : $("#locality").val(),
-        "opening-time" : [],
+        "opening-time" : getOpeningTimeAsArray(),
         website_coupon : $("#website_coupon").val(),
         website_crowdfunding : $("#website_crowdfunding").val(),
         isOwner : $("#isOwner").is(":checked"), 
@@ -116,8 +116,39 @@ function getFormData(){
     return formData
 }
 
+
+
 function getOpeningTimeAsArray(){
-    return [];
+    var array = [];
+    for(var i = 1; i <= 7; i++){
+        if($("#oh-start-"+i).val() || $("#oh-close-"+i).val()){
+            array.push(getOpenHoursObj(i,"all"))
+        }
+        if($("#dh-start-"+i).val() || $("#dh-close-"+i).val()){
+            array.push(getOpenHoursObj(i,"delivery"))
+        }
+        if($("#ph-start-"+i).val() || $("#ph-close-"+i).val()){
+            array.push(getOpenHoursObj(i,"pickup"))
+        }
+    }
+    return array;
+}
+
+function getOpenHoursObj(day,oh_type){
+    type_select = "oh";
+    if(oh_type === "delivery"){
+        type_select = "dh";
+    } else if (oh_type === "pickup"){
+        type_select = "ph";
+    }
+
+    return {
+        close: hoursStrToSeconds($("#"+type_select+"-start-"+day).val()),
+        //modified: "2020-03-24T15:02:06", //TODO
+        open: hoursStrToSeconds($("#"+type_select+"-end-"+day).val()),
+        type: oh_type,
+        weekday: day
+    };
 }
 
 function sendFormData(formData){
