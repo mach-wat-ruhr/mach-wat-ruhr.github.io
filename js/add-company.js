@@ -36,20 +36,50 @@ function setFormData(data){
     insertValue("#locality",data.locality);
     
     //Opening Hours
-    insertValue("#oh-start-1",getOpeningHoursOpenByDay(data["opening-time"], 1));
-    insertValue("#oh-start-2",getOpeningHoursOpenByDay(data["opening-time"], 2));
-    insertValue("#oh-start-3",getOpeningHoursOpenByDay(data["opening-time"], 3));
-    insertValue("#oh-start-4",getOpeningHoursOpenByDay(data["opening-time"], 4));
-    insertValue("#oh-start-5",getOpeningHoursOpenByDay(data["opening-time"], 5));
-    insertValue("#oh-start-6",getOpeningHoursOpenByDay(data["opening-time"], 6));
-    insertValue("#oh-start-7",getOpeningHoursOpenByDay(data["opening-time"], 7));
-    insertValue("#oh-end-1",getOpeningHoursCloseByDay(data["opening-time"], 1));
-    insertValue("#oh-end-2",getOpeningHoursCloseByDay(data["opening-time"], 2));
-    insertValue("#oh-end-3",getOpeningHoursCloseByDay(data["opening-time"], 3));
-    insertValue("#oh-end-4",getOpeningHoursCloseByDay(data["opening-time"], 4));
-    insertValue("#oh-end-5",getOpeningHoursCloseByDay(data["opening-time"], 5));
-    insertValue("#oh-end-6",getOpeningHoursCloseByDay(data["opening-time"], 6));
-    insertValue("#oh-end-7",getOpeningHoursCloseByDay(data["opening-time"], 7));
+    insertValue("#oh-start-1",getOpeningHoursOpenByDay(data["opening-time"], 1, "all"));
+    insertValue("#oh-start-2",getOpeningHoursOpenByDay(data["opening-time"], 2, "all"));
+    insertValue("#oh-start-3",getOpeningHoursOpenByDay(data["opening-time"], 3, "all"));
+    insertValue("#oh-start-4",getOpeningHoursOpenByDay(data["opening-time"], 4, "all"));
+    insertValue("#oh-start-5",getOpeningHoursOpenByDay(data["opening-time"], 5, "all"));
+    insertValue("#oh-start-6",getOpeningHoursOpenByDay(data["opening-time"], 6, "all"));
+    insertValue("#oh-start-7",getOpeningHoursOpenByDay(data["opening-time"], 7, "all"));
+    insertValue("#oh-end-1",getOpeningHoursCloseByDay(data["opening-time"], 1, "all"));
+    insertValue("#oh-end-2",getOpeningHoursCloseByDay(data["opening-time"], 2, "all"));
+    insertValue("#oh-end-3",getOpeningHoursCloseByDay(data["opening-time"], 3, "all"));
+    insertValue("#oh-end-4",getOpeningHoursCloseByDay(data["opening-time"], 4, "all"));
+    insertValue("#oh-end-5",getOpeningHoursCloseByDay(data["opening-time"], 5, "all"));
+    insertValue("#oh-end-6",getOpeningHoursCloseByDay(data["opening-time"], 6, "all"));
+    insertValue("#oh-end-7",getOpeningHoursCloseByDay(data["opening-time"], 7, "all"));
+    //Opening Hours
+    insertValue("#dh-start-1",getOpeningHoursOpenByDay(data["opening-time"], 1, "delivery"));
+    insertValue("#dh-start-2",getOpeningHoursOpenByDay(data["opening-time"], 2, "delivery"));
+    insertValue("#dh-start-3",getOpeningHoursOpenByDay(data["opening-time"], 3, "delivery"));
+    insertValue("#dh-start-4",getOpeningHoursOpenByDay(data["opening-time"], 4, "delivery"));
+    insertValue("#dh-start-5",getOpeningHoursOpenByDay(data["opening-time"], 5, "delivery"));
+    insertValue("#dh-start-6",getOpeningHoursOpenByDay(data["opening-time"], 6, "delivery"));
+    insertValue("#dh-start-7",getOpeningHoursOpenByDay(data["opening-time"], 7, "delivery"));
+    insertValue("#dh-end-1",getOpeningHoursCloseByDay(data["opening-time"], 1, "delivery"));
+    insertValue("#dh-end-2",getOpeningHoursCloseByDay(data["opening-time"], 2, "delivery"));
+    insertValue("#dh-end-3",getOpeningHoursCloseByDay(data["opening-time"], 3, "delivery"));
+    insertValue("#dh-end-4",getOpeningHoursCloseByDay(data["opening-time"], 4, "delivery"));
+    insertValue("#dh-end-5",getOpeningHoursCloseByDay(data["opening-time"], 5, "delivery"));
+    insertValue("#dh-end-6",getOpeningHoursCloseByDay(data["opening-time"], 6, "delivery"));
+    insertValue("#dh-end-7",getOpeningHoursCloseByDay(data["opening-time"], 7, "delivery"));
+    //Opening Hours
+    insertValue("#ph-start-1",getOpeningHoursOpenByDay(data["opening-time"], 1, "pickup"));
+    insertValue("#ph-start-2",getOpeningHoursOpenByDay(data["opening-time"], 2, "pickup"));
+    insertValue("#ph-start-3",getOpeningHoursOpenByDay(data["opening-time"], 3, "pickup"));
+    insertValue("#ph-start-4",getOpeningHoursOpenByDay(data["opening-time"], 4, "pickup"));
+    insertValue("#ph-start-5",getOpeningHoursOpenByDay(data["opening-time"], 5, "pickup"));
+    insertValue("#ph-start-6",getOpeningHoursOpenByDay(data["opening-time"], 6, "pickup"));
+    insertValue("#ph-start-7",getOpeningHoursOpenByDay(data["opening-time"], 7, "pickup"));
+    insertValue("#ph-end-1",getOpeningHoursCloseByDay(data["opening-time"], 1, "pickup"));
+    insertValue("#ph-end-2",getOpeningHoursCloseByDay(data["opening-time"], 2, "pickup"));
+    insertValue("#ph-end-3",getOpeningHoursCloseByDay(data["opening-time"], 3, "pickup"));
+    insertValue("#ph-end-4",getOpeningHoursCloseByDay(data["opening-time"], 4, "pickup"));
+    insertValue("#ph-end-5",getOpeningHoursCloseByDay(data["opening-time"], 5, "pickup"));
+    insertValue("#ph-end-6",getOpeningHoursCloseByDay(data["opening-time"], 6, "pickup"));
+    insertValue("#ph-end-7",getOpeningHoursCloseByDay(data["opening-time"], 7, "pickup"));
     
     insertValue("#website_coupon",data.website_coupon);
     insertValue("#website_crowdfunding",data.website_crowdfunding);
@@ -76,10 +106,11 @@ function getFormData(){
         address : $("#address").val(),
         postalcode : $("#postalcode").val(),
         locality : $("#locality").val(),
-        "opening-time" : getOpeningTimeAsArray(),
+        "opening-time" : [],
         website_coupon : $("#website_coupon").val(),
         website_crowdfunding : $("#website_crowdfunding").val(),
-        isOwner : $("#isOwner").is(":checked")
+        isOwner : $("#isOwner").is(":checked"), 
+        agreedLicense : true
     };
     console.log(formData);
     return formData

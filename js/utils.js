@@ -38,9 +38,9 @@ function getOpeningHoursByDay(openingHoursJson, dayNum){
     }
 }
 
-function getOpeningHoursOpenByDay(openingHoursJson, dayNum){
+function getOpeningHoursOpenByDay(openingHoursJson, dayNum, type){
   if(openingHoursJson){
-    element = openingHoursJson.find(e => e.weekday === dayNum);
+    element = openingHoursJson.find(e => e.weekday === dayNum && e.type === type);
     if(element){
         return secondsTo24h(element.open);
     } else {
@@ -51,9 +51,9 @@ function getOpeningHoursOpenByDay(openingHoursJson, dayNum){
   }
 }
 
-function getOpeningHoursCloseByDay(openingHoursJson, dayNum){
+function getOpeningHoursCloseByDay(openingHoursJson, dayNum, type){
   if(openingHoursJson){
-    element = openingHoursJson.find(e => e.weekday === dayNum);
+    element = openingHoursJson.find(e => e.weekday === dayNum && e.type === type);
     if(element){
         return secondsTo24h(element.close);
     } else {
