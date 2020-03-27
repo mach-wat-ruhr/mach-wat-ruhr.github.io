@@ -5,6 +5,7 @@ author:
 description:
 url: https://mach.wat.ruhr/
 url_encoded: https%3A%2F%2Fmach.wat.ruhr%2F
+url_backend: https://lokalwirkt.de/
 api_endpoint: https://lokalwirkt.de
 
 # Build settings
