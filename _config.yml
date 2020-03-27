@@ -1,9 +1,11 @@
 # Site settings
-title:
+title: Lokal Wirkt
 email:
 author:
 description:
-url:
+url: https://lokalwirkt.de/
+url_encoded: https%3A%2F%2Fmach.wat.ruhr%2F
+api_endpoint: https://lokalwirkt.de
 
 # Build settings
 permalink: :title/
