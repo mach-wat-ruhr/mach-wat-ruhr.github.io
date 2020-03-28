@@ -14,6 +14,61 @@ function setupAddCompany(){
             }});
         }
     }
+
+    addOpeningTime("all",true);
+}
+
+function openingTimeTemplate(type,isFirst){
+    if(isFirst){
+        removeButton = ''
+    } else {
+        removeButton = '<a class="btn removeTime"><i class="fa fa-minus" aria-hidden="true"></i></a>'
+    }
+
+    template = `
+    <div class="row">
+          <div class="col-5">
+            <select class="custom-select">
+              <option value="1" selected>Montag</option>
+              <option value="2">Dienstag</option>
+              <option value="3">Mittwoch</option>
+              <option value="4">Donnerstag</option>
+              <option value="5">Freitag</option>
+              <option value="6">Samstag</option>
+              <option value="7">Sonntag</option>
+            </select>
+          </div>
+          <div class="col-2">
+            <input id="open" type="text" class="form-control text-center" placeholder="00:00" pattern="[0-2][0-9]:[0-5][0-9]">
+          </div>
+          <div class="col-1 text-center mt-1">
+            <span><i class="fa fa-minus" aria-hidden="true"></i></span>
+          </div>
+          <div class="col-2">
+            <input id="close" type="text" class="form-control text-center" placeholder="23:59" pattern="[0-2][0-9]:[0-5][0-9]">
+          </div>
+          <div class="col-2">
+            <a class="btn addTime"><i class="fa fa-plus" aria-hidden="true"></i></a>
+            `+removeButton+`
+          </div>
+        </div>
+    `;
+
+    return template;
+}
+
+function addOpeningTime(type,isFirst){
+    $("#"+type).html($("#"+type).html()+openingTimeTemplate(type,isFirst))
+    $(".btn.addTime").click(function(obj){
+        addOpeningTime(type,false);
+    });
+    $(".btn.removeTime").click(function(obj){
+        obj.currentTarget.parentElement.parentElement.remove()
+    });
+}
+
+function removeTime(type){
+
 }
 
 function setFormData(data){
@@ -83,6 +138,8 @@ function setFormData(data){
     
     insertValue("#website_coupon",data.website_coupon);
     insertValue("#website_crowdfunding",data.website_crowdfunding);
+
+    insertValue("#object", JSON.stringify(data))
 }
 
 function insertValue(id,value){
@@ -113,6 +170,10 @@ function getFormData(){
         agreedLicense : true
     };
     console.log(formData);
+
+    originalObject = $("object").val()
+    console.log(originalObject)
+
     return formData
 }
 

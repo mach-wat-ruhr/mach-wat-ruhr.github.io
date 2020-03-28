@@ -10,13 +10,17 @@ function htmlEntities(str) {
     return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
 
+function replaceJavaScriptWithHttps(str){
+  return str.replace(/javascript:/gmi,"https://");
+}
+
 function checkOutput(str){
     if(str){
-        return htmlEntities(str);
+        return htmlEntities(replaceJavaScriptWithHttps(str));
     } else {
         return "<i class='muted'>Kein Eintrag</i>";
     }
-} 
+}
 
 function hoursStrToSeconds(hourStr){
   var hours = parseInt(hourStr.split(":")[0])
@@ -101,7 +105,7 @@ function getCompanyCard(jsonCompanyElement){
                     <b><i class="fas fa-map-marked-alt"></i></b>
                   </div>
                   <div class="col-8">
-                    <a href="/map/#location=`+checkOutput(jsonCompanyElement.lat+","+jsonCompanyElement.lon)+`&radius=1500&id=`+checkOutput(jsonCompanyElement.id)+`">`+checkOutput(jsonCompanyElement.address+", "+jsonCompanyElement.postalcode+" "+jsonCompanyElement.locality+", "+jsonCompanyElement.country)+`</a>
+                    <a href="/map/#location=`+checkOutput(jsonCompanyElement.lat+","+jsonCompanyElement.lon)+`&radius=1500&id=`+checkOutput(jsonCompanyElement.id)+`">`+checkOutput(jsonCompanyElement.address)+", "+checkOutput(jsonCompanyElement.postalcode)+" "+checkOutput(jsonCompanyElement.locality)+", "+checkOutput(jsonCompanyElement.country)+`</a>
                   </div>
                   <div class="col-1">
                   <a class="pull-right lead" href="`+document.location.protocol+"//"+document.location.host+"/company/#id="+checkOutput(jsonCompanyElement.id)+`" aria-label="Einzelansicht zum Teilen"><i class="fas fa-external-link-alt"></i></a>
@@ -118,7 +122,7 @@ function getCompanyCard(jsonCompanyElement){
                     <b><i class="fas fa-globe"></i></b>
                   </div>
                   <div class="col-10">
-                    <a href="mailto:`+checkOutput(jsonCompanyElement.website)+`">`+checkOutput(jsonCompanyElement.website)+`</a>
+                    <a href="`+checkOutput(jsonCompanyElement.website)+`">`+checkOutput(jsonCompanyElement.website)+`</a>
                   </div>
                 </div>
                 <div class="row">
