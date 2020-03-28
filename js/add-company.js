@@ -16,6 +16,8 @@ function setupAddCompany(){
     }
 
     addOpeningTime("all",true);
+    addOpeningTime("delivery",true);
+    addOpeningTime("pickup",true);
 }
 
 function openingTimeTemplate(type,isFirst){
@@ -27,7 +29,7 @@ function openingTimeTemplate(type,isFirst){
 
     template = `
     <div class="row">
-          <div class="col-5">
+        <div class="col-md-4">
             <select class="custom-select">
               <option value="1" selected>Montag</option>
               <option value="2">Dienstag</option>
@@ -37,21 +39,18 @@ function openingTimeTemplate(type,isFirst){
               <option value="6">Samstag</option>
               <option value="7">Sonntag</option>
             </select>
-          </div>
-          <div class="col-2">
+        </div>
+          <div class="col-md-3">
             <input id="open" type="text" class="form-control text-center" placeholder="00:00" pattern="[0-2][0-9]:[0-5][0-9]">
-          </div>
-          <div class="col-1 text-center mt-1">
-            <span><i class="fa fa-minus" aria-hidden="true"></i></span>
-          </div>
-          <div class="col-2">
-            <input id="close" type="text" class="form-control text-center" placeholder="23:59" pattern="[0-2][0-9]:[0-5][0-9]">
-          </div>
-          <div class="col-2">
+        </div>
+            <div class="col-md-3">
+                <input id="close" type="text" class="form-control text-center" placeholder="23:59" pattern="[0-2][0-9]:[0-5][0-9]">
+            </div>
+        <div class="col-md-2">
             <a class="btn addTime"><i class="fa fa-plus" aria-hidden="true"></i></a>
             `+removeButton+`
-          </div>
         </div>
+    </div>
     `;
 
     return template;
