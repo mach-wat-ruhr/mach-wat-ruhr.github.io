@@ -15,20 +15,20 @@ function setupAddCompany(){
         }
     }
 
-    addOpeningTime("all",true);
-    addOpeningTime("delivery",true);
-    addOpeningTime("pickup",true);
+    addOpeningTime(0,"all",true,"","");
+    addOpeningTime(0,"delivery",true,"","");
+    addOpeningTime(0,"pickup",true,"","");
 }
 
-function openingTimeTemplate(type,isFirst){
+function openingTimeTemplate(i,type,isFirst,open,close){
     if(isFirst){
         removeButton = ''
     } else {
-        removeButton = '<a class="btn removeTime"><i class="fa fa-minus" aria-hidden="true"></i></a>'
+        removeButton = '<a class="btn removeTime '+type+"-"+i+'"><i class="fa fa-minus" aria-hidden="true"></i></a>'
     }
 
     template = `
-    <div class="row">
+    <div class="row openingHours">
         <div class="col-md-4">
             <select class="custom-select">
               <option value="1" selected>Montag</option>
@@ -41,13 +41,13 @@ function openingTimeTemplate(type,isFirst){
             </select>
         </div>
           <div class="col-md-3">
-            <input id="open" type="text" class="form-control text-center" placeholder="00:00" pattern="[0-2][0-9]:[0-5][0-9]">
+            <input id="open-`+type+"-"+i+`" type="text" class="form-control text-center" placeholder="00:00" pattern="[0-2][0-9]:[0-5][0-9]" value="`+open+`">
         </div>
             <div class="col-md-3">
-                <input id="close" type="text" class="form-control text-center" placeholder="23:59" pattern="[0-2][0-9]:[0-5][0-9]">
+                <input id="close-`+type+"-"+i+`" type="text" class="form-control text-center" placeholder="23:59" pattern="[0-2][0-9]:[0-5][0-9]" value="`+close+`">
             </div>
         <div class="col-md-2">
-            <a class="btn addTime"><i class="fa fa-plus" aria-hidden="true"></i></a>
+            <a class="btn addTime `+type+"-"+i+`"><i class="fa fa-plus" aria-hidden="true"></i></a>
             `+removeButton+`
         </div>
     </div>
@@ -56,18 +56,16 @@ function openingTimeTemplate(type,isFirst){
     return template;
 }
 
-function addOpeningTime(type,isFirst){
-    $("#"+type).html($("#"+type).html()+openingTimeTemplate(type,isFirst))
-    $(".btn.addTime").click(function(obj){
-        addOpeningTime(type,false);
+function addOpeningTime(i,type,isFirst,open,close){
+    $("#"+type).append(openingTimeTemplate(i,type,isFirst,open,close))
+    $("."+type+"-"+i+".btn.addTime").click(function(obj){
+        // console.log(obj)
+        addOpeningTime(i++,type,false,"","");
+        // $("#"+type).append(openingTimeTemplate(type,isFirst,open,close))
     });
-    $(".btn.removeTime").click(function(obj){
+    $("."+type+"-"+i+".btn.removeTime").click(function(obj){
         obj.currentTarget.parentElement.parentElement.remove()
     });
-}
-
-function removeTime(type){
-
 }
 
 function setFormData(data){

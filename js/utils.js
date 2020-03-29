@@ -11,7 +11,7 @@ function htmlEntities(str) {
 }
 
 function replaceJavaScriptWithHttps(str){
-  return str.replace(/javascript:/gmi,"https://");
+  return String(str).replace(/javascript:/gmi,"https://");
 }
 
 function checkOutput(str){
