@@ -84,10 +84,14 @@ function getCompanyCardById(id){
       return undefined;
     }
     let path = "/api/store/"+id;
-    let json = JSON.parse($.ajax({url:API_ENDPOINT+path,async:false}).responseText);
-    if(json){
-      return getCompanyCard(json.data)
+    let response = $.ajax({url:API_ENDPOINT+path,async:false}).responseText
+    if(response){
+      let json = JSON.parse(response);
+      if(json){
+        return getCompanyCard(json.data)
+      }
     }
+    return undefined
   }
   return "Kein Eintrag unter der dieser ID gefunden, probier es mal mit der <a href='/search/'>Suche</a>."
 }
