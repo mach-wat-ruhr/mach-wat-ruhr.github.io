@@ -57,11 +57,10 @@ function openingTimeTemplate(i,type,isFirst,open,close){
 }
 
 function addOpeningTime(i,type,isFirst,open,close){
+    i = i + 1;
     $("#"+type).append(openingTimeTemplate(i,type,isFirst,open,close))
     $("."+type+"-"+i+".btn.addTime").click(function(obj){
-        // console.log(obj)
-        addOpeningTime(i++,type,false,"","");
-        // $("#"+type).append(openingTimeTemplate(type,isFirst,open,close))
+        addOpeningTime(i,type,false,"","");
     });
     $("."+type+"-"+i+".btn.removeTime").click(function(obj){
         obj.currentTarget.parentElement.parentElement.remove()
